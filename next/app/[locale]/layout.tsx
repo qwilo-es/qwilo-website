@@ -50,11 +50,28 @@ export default async function LocaleLayout(props: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const params = await props.params;
+  console.log('LocaleLayout: Starting rendering...');
+  
+  let params;
+  try {
+    params = await props.params;
+    console.log('LocaleLayout: Params resolved:', params);
+  } catch (error) {
+    console.error('LocaleLayout: Error resolving params:', error);
+    // Return a safe fallback
+    return (
+      <html lang="en">
+        <body className="bg-charcoal text-white">
+          <div>Error loading page</div>
+        </body>
+      </html>
+    );
+  }
 
   const { locale } = params;
-
   const { children } = props;
+
+  console.log('LocaleLayout: About to fetch global data for locale:', locale);
 
   let pageData;
   try {
@@ -63,27 +80,49 @@ export default async function LocaleLayout(props: {
       { filters: { locale } },
       true
     );
+    console.log('LocaleLayout: Global data fetched successfully:', !!pageData);
   } catch (error) {
-    console.log('Error fetching global data, using defaults:', error);
+    console.error('LocaleLayout: Error fetching global data:', error);
     pageData = null;
   }
 
   // Fallback if global content doesn't exist
   const globalData = pageData || { navbar: null, footer: null };
-  return (
-    <ViewTransitions>
-      <CartProvider>
-        <div
-          className={cn(
-            inter.className,
-            'bg-charcoal antialiased h-full w-full'
-          )}
-        >
-          <Navbar data={globalData.navbar} locale={locale} />
-          {children}
-          <Footer data={globalData.footer} locale={locale} />
-        </div>
-      </CartProvider>
-    </ViewTransitions>
-  );
+  console.log('LocaleLayout: Using global data:', { hasNavbar: !!globalData.navbar, hasFooter: !!globalData.footer });
+  
+  console.log('LocaleLayout: About to render components...');
+  
+  try {
+    return (
+      <ViewTransitions>
+        <CartProvider>
+          <div
+            className={cn(
+              inter.className,
+              'bg-charcoal antialiased h-full w-full'
+            )}
+          >
+            <Navbar data={globalData.navbar} locale={locale} />
+            {children}
+            <Footer data={globalData.footer} locale={locale} />
+          </div>
+        </CartProvider>
+      </ViewTransitions>
+    );
+  } catch (error) {
+    console.error('LocaleLayout: Error rendering components:', error);
+    // Return a minimal fallback
+    return (
+      <html lang={locale}>
+        <body className="bg-charcoal text-white">
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="text-center">
+              <h1>Loading...</h1>
+              <p>Setting up your experience...</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    );
+  }
 }

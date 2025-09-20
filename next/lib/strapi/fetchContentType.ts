@@ -33,14 +33,23 @@ export default async function fetchContentType(
   params: Record<string, unknown> = {},
   spreadData?: boolean
 ): Promise<any> {
-  const { isEnabled: isDraftMode } = await draftMode();
+  let isDraftMode = false;
+  
+  try {
+    const draftModeResult = await draftMode();
+    isDraftMode = draftModeResult.isEnabled;
+  } catch (error) {
+    console.log('Draft mode not available, defaulting to false:', error);
+    isDraftMode = false;
+  }
 
   try {
     // Debug environment variables
     console.log('Environment check:', {
       API_URL: process.env.NEXT_PUBLIC_API_URL,
       HAS_TOKEN: !!process.env.STRAPI_API_TOKEN,
-      CONTENT_TYPE: contentType
+      CONTENT_TYPE: contentType,
+      DRAFT_MODE: isDraftMode
     });
 
     // Check if API URL is configured
