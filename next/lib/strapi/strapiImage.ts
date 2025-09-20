@@ -23,3 +23,6 @@ export function getStrapiMedia(url: string | null) {
   }
   return url;
 }
+
+// Alias for backward compatibility
+export const strapiImage = getStrapiMedia;

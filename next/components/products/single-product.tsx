@@ -7,13 +7,13 @@ import React, { useState } from 'react';
 import AddToCartModal from '@/components/products/modal';
 import { StrapiImage } from '@/components/ui/strapi-image';
 import { useCart } from '@/context/cart-context';
-import { strapiImage } from '@/lib/strapi/strapiImage';
+import { getStrapiMedia } from '@/lib/strapi/strapiImage';
 import { cn, formatNumber } from '@/lib/utils';
 import { Product } from '@/types/types';
 
 export const SingleProduct = ({ product }: { product: Product }) => {
   const [activeThumbnail, setActiveThumbnail] = useState(
-    strapiImage(product.images[0].url)
+    getStrapiMedia(product.images[0].url)
   );
   const { addToCart } = useCart();
 
@@ -48,7 +48,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
             {product.images &&
               product.images.map((image, index) => (
                 <button
-                  onClick={() => setActiveThumbnail(strapiImage(image.url))}
+                  onClick={() => setActiveThumbnail(getStrapiMedia(image.url))}
                   key={'product-image' + index}
                   className={cn(
                     'h-20 w-20 rounded-xl',
@@ -57,7 +57,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
                       : 'border-2 border-transparent'
                   )}
                   style={{
-                    backgroundImage: `url(${strapiImage(image.url)})`,
+                    backgroundImage: `url(${getStrapiMedia(image.url)})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
