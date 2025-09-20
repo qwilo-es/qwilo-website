@@ -51,6 +51,7 @@ export default async function fetchContentType(
       cache: 'no-store',
       headers: {
         'strapi-encode-source-maps': isDraftMode ? 'true' : 'false',
+        'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
       },
     });
 
