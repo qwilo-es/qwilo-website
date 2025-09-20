@@ -13,7 +13,7 @@ export const Logo = ({ image, locale }: { image?: Image; locale?: string }) => {
         className="font-normal flex space-x-2 items-center text-sm mr-4  text-black   relative z-20"
       >
         <BlurImage
-          src={getStrapiMedia(image?.url)}
+          src={getStrapiMedia(image?.url) || ''}
           alt={image.alternativeText}
           width={200}
           height={200}

@@ -23,9 +23,9 @@ export const BlogCard = ({
       href={`/${locale}/blog/${article.slug}`}
     >
       <div className="">
-        {article.image ? (
+        {article.image && getStrapiMedia(article.image.url) ? (
           <BlurImage
-            src={getStrapiMedia(article.image.url)}
+            src={getStrapiMedia(article.image.url) || ''}
             alt={article.title}
             height="1200"
             width="1200"
@@ -88,9 +88,9 @@ export const BlogCardVertical = ({
       href={`/${locale}/blog/${article.slug}`}
     >
       <div className="">
-        {article.image ? (
+        {article.image && getStrapiMedia(article.image.url || '') ? (
           <BlurImage
-            src={getStrapiMedia(article.image.url || '')}
+            src={getStrapiMedia(article.image.url || '') || ''}
             alt={article.title}
             height="800"
             width="800"
