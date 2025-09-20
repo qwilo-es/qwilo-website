@@ -43,6 +43,11 @@ export default async function HomePage(props: {
     true
   );
 
+  // Fallback if no data is returned
+  if (!pageData) {
+    return <div>Loading...</div>;
+  }
+
   const localizedSlugs = pageData.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {
       acc[localization.locale] = '';
