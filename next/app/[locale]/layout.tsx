@@ -22,6 +22,8 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params;
   
+  console.log('generateMetadata called for locale:', params.locale);
+  
   try {
     const pageData = await fetchContentType(
       'global',
@@ -32,12 +34,14 @@ export async function generateMetadata(props: {
       true
     );
 
+    console.log('Global page data fetched:', pageData);
     const seo = pageData?.seo;
     const metadata = generateMetadataObject(seo);
+    console.log('Generated metadata:', metadata);
     return metadata;
   } catch (error) {
-    console.log('Error fetching global metadata, using defaults:', error);
-    // Return default metadata
+    console.error('Error in generateMetadata:', error);
+    // Return safe default metadata
     return generateMetadataObject(null);
   }
 }
