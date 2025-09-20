@@ -50,6 +50,9 @@ export default async function LocaleLayout(props: {
     { filters: { locale } },
     true
   );
+
+  // Fallback if global content doesn't exist
+  const globalData = pageData || { navbar: null, footer: null };
   return (
     <ViewTransitions>
       <CartProvider>
@@ -59,9 +62,9 @@ export default async function LocaleLayout(props: {
             'bg-charcoal antialiased h-full w-full'
           )}
         >
-          <Navbar data={pageData.navbar} locale={locale} />
+          <Navbar data={globalData.navbar} locale={locale} />
           {children}
-          <Footer data={pageData.footer} locale={locale} />
+          <Footer data={globalData.footer} locale={locale} />
         </div>
       </CartProvider>
     </ViewTransitions>
