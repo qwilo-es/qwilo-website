@@ -36,6 +36,19 @@ export default async function fetchContentType(
   const { isEnabled: isDraftMode } = await draftMode();
 
   try {
+    // Debug environment variables
+    console.log('Environment check:', {
+      API_URL: process.env.NEXT_PUBLIC_API_URL,
+      HAS_TOKEN: !!process.env.STRAPI_API_TOKEN,
+      CONTENT_TYPE: contentType
+    });
+
+    // Check if API URL is configured
+    if (!process.env.NEXT_PUBLIC_API_URL) {
+      console.error('NEXT_PUBLIC_API_URL is not configured');
+      return spreadData ? null : { data: [] };
+    }
+
     const queryParams = { ...params };
 
     if (isDraftMode) {
@@ -44,6 +57,7 @@ export default async function fetchContentType(
 
     // Construct the full URL for the API request
     const url = new URL(`api/${contentType}`, process.env.NEXT_PUBLIC_API_URL);
+    console.log('Fetching from URL:', url.toString());
 
     // Perform the fetch request with the provided query parameters
     const response = await fetch(`${url.href}?${qs.stringify(queryParams)}`, {
