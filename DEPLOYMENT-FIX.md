@@ -23,8 +23,10 @@ STRAPI_API_TOKEN=2fbef56c1b61e4b54b79e4c2ba458c6b9ba87b6d7c7c7c1e7346b4e1e9d15b5
 ## Steps to Fix:
 1. Go to Vercel Dashboard → Project → Settings → Environment Variables
 2. Update `NEXT_PUBLIC_API_URL` to `https://attractive-captain-e67c81eb66.strapiapp.com` (remove `/admin`)
-3. Add `STRAPI_API_TOKEN` with the API token from Strapi
+3. Add `STRAPI_API_TOKEN` with the REAL API token from Strapi admin panel
 4. Redeploy the project
+
+**Note: Get the real API token from https://attractive-captain-e67c81eb66.strapiapp.com/admin → Settings → API Tokens**
 
 ## Why This Fixes The Issue:
 - The code constructs URLs like `${NEXT_PUBLIC_API_URL}/api/global`
