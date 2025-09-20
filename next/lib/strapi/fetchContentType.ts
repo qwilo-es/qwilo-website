@@ -60,13 +60,21 @@ export default async function fetchContentType(
     console.log('Fetching from URL:', url.toString());
 
     // Perform the fetch request with the provided query parameters
+    const headers: Record<string, string> = {
+      'strapi-encode-source-maps': isDraftMode ? 'true' : 'false',
+    };
+
+    // Only add Authorization header if token is available
+    if (process.env.STRAPI_API_TOKEN) {
+      headers['Authorization'] = `Bearer ${process.env.STRAPI_API_TOKEN}`;
+    } else {
+      console.log('No STRAPI_API_TOKEN found, making public API request');
+    }
+
     const response = await fetch(`${url.href}?${qs.stringify(queryParams)}`, {
       method: 'GET',
       cache: 'no-store',
-      headers: {
-        'strapi-encode-source-maps': isDraftMode ? 'true' : 'false',
-        'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
+      headers,
     });
 
     if (!response.ok) {
