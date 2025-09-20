@@ -1,13 +1,19 @@
-# Deployment Fix - Environment Variables
+# Deployment Fix - Environment Variables ✅
 
-## Problem
-The website is showing "Application error: a server-side exception has occurred" because the environment variables in Vercel are incorrectly configured.
+## Problem: RESOLVED ✅
+The website was showing "Application error: a server-side exception has occurred" due to incorrect environment variables.
 
-## Root Cause
-The `NEXT_PUBLIC_API_URL` environment variable is pointing to `/admin` endpoint instead of the base API URL.
+## Root Cause: FIXED ✅  
+The `NEXT_PUBLIC_API_URL` environment variable was pointing to `/admin` endpoint instead of the base API URL.
 
-## Solution
-Update the following environment variables in Vercel:
+## Solution: COMPLETED ✅
+Updated the following environment variables in Vercel:
+
+### ✅ Correct Configuration (APPLIED):
+```
+NEXT_PUBLIC_API_URL=https://attractive-captain-e67c81eb66.strapiapp.com
+STRAPI_API_TOKEN=[TOKEN_FROM_STRAPI_ADMIN]
+```
 
 ### Current (Incorrect) Configuration:
 ```
