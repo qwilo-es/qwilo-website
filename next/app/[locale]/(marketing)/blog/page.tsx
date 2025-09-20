@@ -17,46 +17,69 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const pageData = await fetchContentType(
-    'blog-page',
-    {
-      filters: { locale: params.locale },
-      populate: 'seo.metaImage',
-    },
-    true
-  );
+  
+  try {
+    const pageData = await fetchContentType(
+      'blog-page',
+      {
+        filters: { locale: params.locale },
+        populate: 'seo.metaImage',
+      },
+      true
+    );
 
-  const seo = pageData?.seo;
-  const metadata = generateMetadataObject(seo);
-  return metadata;
+    const seo = pageData?.seo;
+    const metadata = generateMetadataObject(seo);
+    return metadata;
+  } catch (error) {
+    console.log('Failed to fetch blog metadata from Strapi:', error);
+    return generateMetadataObject(null);
+  }
 }
 
 export default async function Blog(props: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const params = await props.params;
-  const blogPage = await fetchContentType(
-    'blog-page',
-    {
-      filters: { locale: params.locale },
-    },
-    true
-  );
-  const articles = await fetchContentType(
-    'articles',
-    {
-      filters: { locale: params.locale },
-    },
-    false
-  );
+  
+  let blogPage, articles;
+  
+  try {
+    blogPage = await fetchContentType(
+      'blog-page',
+      {
+        filters: { locale: params.locale },
+      },
+      true
+    );
+  } catch (error) {
+    console.log('Failed to fetch blog page from Strapi:', error);
+    blogPage = {
+      title: 'Blog',
+      localizations: []
+    };
+  }
 
-  const localizedSlugs = blogPage.localizations?.reduce(
+  try {
+    articles = await fetchContentType(
+      'articles',
+      {
+        filters: { locale: params.locale },
+      },
+      false
+    );
+  } catch (error) {
+    console.log('Failed to fetch articles from Strapi:', error);
+    articles = [];
+  }
+
+  const localizedSlugs = blogPage?.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {
       acc[localization.locale] = 'blog';
       return acc;
     },
     { [params.locale]: 'blog' }
-  );
+  ) || { [params.locale]: 'blog' };
 
   return (
     <div className="relative overflow-hidden py-20 md:py-0">

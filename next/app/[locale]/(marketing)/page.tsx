@@ -10,21 +10,27 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params;
 
-  const pageData = await fetchContentType(
-    'pages',
-    {
-      filters: {
-        slug: 'homepage',
-        locale: params.locale,
+  try {
+    const pageData = await fetchContentType(
+      'pages',
+      {
+        filters: {
+          slug: 'homepage',
+          locale: params.locale,
+        },
+        populate: 'seo.metaImage',
       },
-      populate: 'seo.metaImage',
-    },
-    true
-  );
+      true
+    );
 
-  const seo = pageData?.seo;
-  const metadata = generateMetadataObject(seo);
-  return metadata;
+    const seo = pageData?.seo;
+    const metadata = generateMetadataObject(seo);
+    return metadata;
+  } catch (error) {
+    console.log('Failed to fetch homepage metadata from Strapi:', error);
+    // Return default metadata
+    return generateMetadataObject(null);
+  }
 }
 
 export default async function HomePage(props: {
@@ -32,20 +38,35 @@ export default async function HomePage(props: {
 }) {
   const params = await props.params;
 
-  const pageData = await fetchContentType(
-    'pages',
-    {
-      filters: {
-        slug: 'homepage',
-        locale: params.locale,
+  let pageData;
+  try {
+    pageData = await fetchContentType(
+      'pages',
+      {
+        filters: {
+          slug: 'homepage',
+          locale: params.locale,
+        },
       },
-    },
-    true
-  );
+      true
+    );
+  } catch (error) {
+    console.log('Failed to fetch homepage data from Strapi:', error);
+    // Create fallback data structure
+    pageData = {
+      title: 'Qwilo',
+      content: [],
+      localizations: []
+    };
+  }
 
   // Fallback if no data is returned
   if (!pageData) {
-    return <div>Loading...</div>;
+    pageData = {
+      title: 'Qwilo',
+      content: [],
+      localizations: []
+    };
   }
 
   const localizedSlugs = pageData.localizations?.reduce(
