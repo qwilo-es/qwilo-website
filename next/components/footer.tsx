@@ -2,6 +2,7 @@ import { Link } from 'next-view-transitions';
 import React from 'react';
 
 import { Logo } from '@/components/logo';
+import { CALENDAR_LINK } from '@/lib/constants';
 
 export const Footer = async ({
   data,
@@ -81,14 +82,25 @@ const LinkSection = ({
   locale: string;
 }) => (
   <div className="flex justify-center space-y-4 flex-col mt-4">
-    {links.map((link) => (
-      <Link
-        key={link.text}
-        className="transition-colors hover:text-neutral-400 text-muted text-xs sm:text-sm"
-        href={`${link.URL.startsWith('http') ? '' : `/${locale}`}${link.URL}`}
-      >
-        {link.text}
-      </Link>
-    ))}
+    {links.map((link) => {
+      const isScheduleLink = link.text.toLowerCase().includes('agendar') || link.text.toLowerCase().includes('llamada');
+      const url = isScheduleLink ? CALENDAR_LINK : link.URL;
+      const isExternalLink = url.startsWith('http') || url.startsWith('https');
+
+      const LinkComponent = isExternalLink ? 'a' : Link;
+      return (
+        <LinkComponent
+          key={link.text}
+          className="transition-colors hover:text-neutral-400 text-muted text-xs sm:text-sm"
+          href={isExternalLink ? url : `/${locale}${url}`}
+          {...(isExternalLink && {
+            target: "_blank",
+            rel: "noopener noreferrer"
+          })}
+        >
+          {link.text}
+        </LinkComponent>
+      );
+    })}
   </div>
 );

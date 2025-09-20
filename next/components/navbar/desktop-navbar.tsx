@@ -14,6 +14,7 @@ import { NavbarItem } from './navbar-item';
 import { Button } from '@/components/elements/button';
 import { Logo } from '@/components/logo';
 import { cn } from '@/lib/utils';
+import { CALENDAR_LINK } from '@/lib/constants';
 
 type Props = {
   leftNavbarItems: {
@@ -90,18 +91,26 @@ export const DesktopNavbar = ({
       <div className="flex space-x-2 items-center">
         <LocaleSwitcher currentLocale={locale} />
 
-        {rightNavbarItems.map((item, index) => (
-          <Button
-            key={item.text}
-            variant={
-              index === rightNavbarItems.length - 1 ? 'primary' : 'simple'
-            }
-            as={Link}
-            href={`/${locale}${item.URL}`}
-          >
-            {item.text}
-          </Button>
-        ))}
+        {rightNavbarItems.map((item, index) => {
+          const isDemoButton = item.text.toLowerCase().includes('demostración');
+          const url = isDemoButton ? CALENDAR_LINK : item.URL;
+          const isExternalLink = url.startsWith('http') || url.startsWith('https');
+
+          return (
+            <Button
+              key={item.text}
+              variant={
+                index === rightNavbarItems.length - 1 ? 'primary' : 'simple'
+              }
+              as={isExternalLink ? 'a' : Link}
+              href={isExternalLink ? url : `/${locale}${url}`}
+              target={isExternalLink ? "_blank" : undefined}
+              rel={isExternalLink ? "noopener noreferrer" : undefined}
+            >
+              {item.text}
+            </Button>
+          );
+        })}
       </div>
     </motion.div>
   );

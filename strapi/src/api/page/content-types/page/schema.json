@@ -18,39 +18,36 @@
   "attributes": {
     "seo": {
       "type": "component",
-      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "shared.seo"
+      "component": "shared.seo",
+      "repeatable": false
     },
     "slug": {
+      "type": "uid",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "uid",
-      "default": "slug",
-      "required": true
+      "required": true,
+      "default": "slug"
     },
     "dynamic_zone": {
+      "type": "dynamiczone",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "dynamiczone",
       "components": [
         "dynamic-zone.hero",
         "dynamic-zone.features",
         "dynamic-zone.testimonials",
         "dynamic-zone.how-it-works",
-        "dynamic-zone.brands",
-        "dynamic-zone.pricing",
-        "dynamic-zone.launches",
         "dynamic-zone.cta",
         "dynamic-zone.form-next-to-section",
         "dynamic-zone.faq"

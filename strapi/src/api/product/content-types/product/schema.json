@@ -15,14 +15,10 @@
     "name": {
       "type": "string"
     },
-    "price": {
-      "type": "integer"
-    },
     "description": {
       "type": "string"
     },
     "slug": {
-      "pluginOptions": {},
       "type": "uid",
       "targetField": "name"
     },
@@ -38,8 +34,8 @@
     },
     "perks": {
       "type": "component",
-      "repeatable": true,
-      "component": "shared.perks"
+      "component": "shared.perks",
+      "repeatable": true
     },
     "plans": {
       "type": "relation",
@@ -51,7 +47,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::category.category",
-      "mappedBy": "product"
+      "mappedBy": "servicios"
     },
     "dynamic_zone": {
       "type": "dynamiczone",

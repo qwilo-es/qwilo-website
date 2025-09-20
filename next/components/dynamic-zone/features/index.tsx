@@ -44,17 +44,19 @@ export const Features = ({
 }) => {
   return (
     <GradientContainer className="md:my-20">
-      <Container className="py-20 max-w-7xl mx-auto  relative z-40">
+      {/* Añadimos el ID para el scroll */}
+      <Container id="features" className="py-20 max-w-7xl mx-auto  relative z-40">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <IconRocket className="h-6 w-6 text-white" />
         </FeatureIconContainer>
         <Heading className="pt-4">{heading}</Heading>
         <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
 
+        {/* El diseño de tres columnas que quieres */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 py-10">
           {globe_card && (
             <Card
-              className={`md:col-span-${convertWordToNumber(globe_card?.span) || '2'}`}
+              className={`md:col-span-${convertWordToNumber(globe_card?.span) || '1'}`}
             >
               <CardTitle>{globe_card.title}</CardTitle>
               <CardDescription>{globe_card.description}</CardDescription>
@@ -78,7 +80,7 @@ export const Features = ({
 
           {graph_card && (
             <Card
-              className={`md:col-span-${convertWordToNumber(graph_card?.span) || '2'}`}
+              className={`md:col-span-${convertWordToNumber(graph_card?.span) || '1'}`}
             >
               <CardSkeletonContainer
                 showGradient={false}

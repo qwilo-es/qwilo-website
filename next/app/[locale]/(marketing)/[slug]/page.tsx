@@ -41,13 +41,21 @@ export default async function Page(props: {
     true
   );
 
-  const localizedSlugs = pageData.localizations?.reduce(
-    (acc: Record<string, string>, localization: any) => {
-      acc[localization.locale] = localization.slug;
-      return acc;
-    },
-    { [params.locale]: params.slug }
-  );
+  if (!pageData) {
+    // Si no hay datos, podemos redirigir a 404 o mostrar un mensaje de error
+    return <div>Page not found</div>;
+  }
+
+  const localizedSlugs = {
+    [params.locale]: params.slug,
+    ...(pageData.localizations?.reduce(
+      (acc: Record<string, string>, localization: any) => {
+        acc[localization.locale] = localization.slug;
+        return acc;
+      },
+      {}
+    ) || {})
+  };
 
   return (
     <>

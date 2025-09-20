@@ -547,8 +547,8 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
+    servicios: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -696,9 +696,6 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'dynamic-zone.features',
         'dynamic-zone.testimonials',
         'dynamic-zone.how-it-works',
-        'dynamic-zone.brands',
-        'dynamic-zone.pricing',
-        'dynamic-zone.launches',
         'dynamic-zone.cta',
         'dynamic-zone.form-next-to-section',
         'dynamic-zone.faq',
@@ -768,7 +765,7 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
 export interface ApiProductPageProductPage extends Struct.SingleTypeSchema {
   collectionName: 'product_pages';
   info: {
-    displayName: '/products';
+    displayName: '/servicios';
     pluralName: 'product-pages';
     singularName: 'product-page';
   };
@@ -869,7 +866,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     perks: Schema.Attribute.Component<'shared.perks', true>;
     plans: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'>;
-    price: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;

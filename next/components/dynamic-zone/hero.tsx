@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import React from 'react';
 
 import { Cover } from '../decorations/cover';
@@ -10,17 +9,19 @@ import StarBackground from '../decorations/star-background';
 import { Button } from '../elements/button';
 import { Heading } from '../elements/heading';
 import { Subheading } from '../elements/subheading';
+import { CALENDAR_LINK } from '@/lib/constants';
 
+// Recibe la función de scroll como una prop
 export const Hero = ({
   heading,
   sub_heading,
   CTAs,
-  locale,
+  onScrollToFeatures,
 }: {
   heading: string;
   sub_heading: string;
   CTAs: any[];
-  locale: string;
+  onScrollToFeatures: () => void;
 }) => {
   return (
     <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center">
@@ -39,21 +40,35 @@ export const Hero = ({
         {heading.substring(0, heading.lastIndexOf(' '))}{' '}
         <Cover>{heading.split(' ').pop()}</Cover>
       </Heading>
-      <Subheading className="text-center mt-2 md:mt-6 text-base md:text-xl text-muted  max-w-3xl mx-auto relative z-10">
-        {sub_heading}
+      <Subheading className="text-center mt-2 md:mt-6 text-base md:text-xl text-muted max-w-3xl mx-auto relative z-10 whitespace-pre-line">
+        {`Tu socio estratégico en automatización empresarial.\nMás productividad, menos trabajo manual.`}
       </Subheading>
-      <div className="flex space-x-2 items-center mt-8">
+      <div className="flex space-x-4 items-center mt-8">
         {CTAs &&
-          CTAs.map((cta) => (
-            <Button
-              key={cta?.id}
-              as={Link}
-              href={`/${locale}${cta.URL}`}
-              {...(cta.variant && { variant: cta.variant })}
-            >
-              {cta.text}
-            </Button>
-          ))}
+          CTAs.map((cta) => {
+            const isDemoButton = cta.text.toLowerCase().includes('sesión') || cta.text.toLowerCase().includes('estratégica');
+            const url = isDemoButton ? CALENDAR_LINK : cta.URL;
+            const isExternalLink = url.startsWith('http') || url.startsWith('https');
+
+            return (
+              <Button
+                key={cta?.id}
+                as="a"
+                href={isDemoButton ? CALENDAR_LINK : (isExternalLink ? url : undefined)}
+                target={isDemoButton || isExternalLink ? "_blank" : undefined}
+                rel={isDemoButton || isExternalLink ? "noopener noreferrer" : undefined}
+                onClick={
+                  !isDemoButton && !isExternalLink && cta.URL === '#features'
+                    ? onScrollToFeatures
+                    : undefined
+                }
+                className={isDemoButton ? "text-base px-6 py-3" : undefined}
+                {...(cta.variant && { variant: cta.variant })}
+              >
+                {cta.text}
+              </Button>
+            );
+          })}
       </div>
       <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-gradient-to-t from-charcoal to-transparent" />
     </div>

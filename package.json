@@ -10,7 +10,6 @@
     "setup:next": "cd next && yarn && node --loader ts-node/esm ../scripts/copy-env.mts ./",
     "setup:strapi": "cd strapi && yarn && node --loader ts-node/esm ../scripts/copy-env.mts ./",
     "setup": "yarn install && yarn setup:next && yarn setup:strapi",
-    "dev": "yarn concurrently \"cd strapi && yarn develop\" \"npx wait-on http://localhost:1337 && cd next && yarn dev\"",
     "seed": "cd strapi && yarn strapi import -f ./data/export_20250116105447.tar.gz --force",
     "export": "cd strapi && yarn strapi export --no-encrypt -f ./data/export_20250116105447",
     "repo:upstream": "git fetch upstream && git merge upstream/main",
@@ -22,7 +21,7 @@
   "dependencies": {
     "@types/node": "^22.5.2",
     "concurrently": "^8.2.2",
-    "typescript": "^5.0.0",
+    "typescript": "^5.6.2",
     "wait-on": "^8.0.1"
   },
   "devDependencies": {

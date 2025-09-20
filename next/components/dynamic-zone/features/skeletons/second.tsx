@@ -60,16 +60,16 @@ export const SkeletonTwo = () => {
         className="absolute inset-0 flex flex-col group p-8 z-40"
       >
         <Container className="mt-10 ml-4">
-          <Cover>2,052</Cover>
-          satellite
+          <Cover>205</Cover>
+          mensajes
         </Container>
         <Container className="mt-4 ml-10 group-hover:border-secondary transition duration-200 group-hover:scale-[1.02]">
-          <Cover>8,230,002</Cover>
-          Starlinks
+          <Cover>823</Cover>
+          leads
         </Container>
         <Container className="mt-4 ml-4">
-          <Cover>7,224</Cover>
-          rockets
+          <Cover>72</Cover>
+          clientes
         </Container>
         <Cursor
           className="top-40 left-0 group-hover:left-40 group-hover:top-20"
@@ -83,7 +83,7 @@ export const SkeletonTwo = () => {
           }}
           className="mt-10 ml-4"
         >
-          1 satellite
+          7 Agentes con IA
         </Container>
         <Container
           style={{
@@ -91,7 +91,7 @@ export const SkeletonTwo = () => {
           }}
           className="mt-4 ml-10 group-hover:border-secondary transition duration-200 "
         >
-          7 satellites
+          13 automatizaciones
         </Container>
         <Container
           style={{
@@ -99,7 +99,7 @@ export const SkeletonTwo = () => {
           }}
           className="mt-4 ml-4"
         >
-          4 rockets
+          4 emails
         </Container>
 
         <Cursor
