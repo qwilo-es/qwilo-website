@@ -21,18 +21,25 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const pageData = await fetchContentType(
-    'global',
-    {
-      filters: { locale: params.locale },
-      populate: 'seo.metaImage',
-    },
-    true
-  );
+  
+  try {
+    const pageData = await fetchContentType(
+      'global',
+      {
+        filters: { locale: params.locale },
+        populate: 'seo.metaImage',
+      },
+      true
+    );
 
-  const seo = pageData?.seo;
-  const metadata = generateMetadataObject(seo);
-  return metadata;
+    const seo = pageData?.seo;
+    const metadata = generateMetadataObject(seo);
+    return metadata;
+  } catch (error) {
+    console.log('Error fetching global metadata, using defaults:', error);
+    // Return default metadata
+    return generateMetadataObject(null);
+  }
 }
 
 export default async function LocaleLayout(props: {
@@ -45,11 +52,17 @@ export default async function LocaleLayout(props: {
 
   const { children } = props;
 
-  const pageData = await fetchContentType(
-    'global',
-    { filters: { locale } },
-    true
-  );
+  let pageData;
+  try {
+    pageData = await fetchContentType(
+      'global',
+      { filters: { locale } },
+      true
+    );
+  } catch (error) {
+    console.log('Error fetching global data, using defaults:', error);
+    pageData = null;
+  }
 
   // Fallback if global content doesn't exist
   const globalData = pageData || { navbar: null, footer: null };
