@@ -6,10 +6,7 @@ import { getStrapiMedia } from '@/lib/strapi/strapiImage';
 import { Image } from '@/types/types';
 
 export const Logo = ({ image, locale }: { image?: Image; locale?: string }) => {
-  console.log('Logo component - locale received:', locale);
-
   if (image) {
-    console.log('Logo component - using image with locale:', locale);
     return (
       <Link
         href={`/${locale || 'es'}`}
@@ -29,7 +26,6 @@ export const Logo = ({ image, locale }: { image?: Image; locale?: string }) => {
   }
 
   // Fallback when no image - still provide a working logo link
-  console.log('Logo component - using fallback with locale:', locale);
   return (
     <Link
       href={`/${locale || 'es'}`}
