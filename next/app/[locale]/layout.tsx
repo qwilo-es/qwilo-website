@@ -77,7 +77,7 @@ export default async function LocaleLayout(props: {
   try {
     pageData = await fetchContentType(
       'global',
-      { filters: { locale } },
+      { locale },
       true
     );
     console.log('LocaleLayout: Global data fetched successfully:', !!pageData);
