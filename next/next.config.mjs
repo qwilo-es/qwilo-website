@@ -4,7 +4,10 @@ const nextConfig = {
     root: process.cwd().replace('/next', ''),
   },
   images: {
-    remotePatterns: [{ hostname: process.env.IMAGE_HOSTNAME || 'localhost' }],
+    remotePatterns: [
+      { hostname: process.env.IMAGE_HOSTNAME || 'localhost' },
+      { hostname: 'attractive-captain-e67c81eb66.media.strapiapp.com' }
+    ],
   },
   pageExtensions: ['ts', 'tsx'],
   async redirects() {
