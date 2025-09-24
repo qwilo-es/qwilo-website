@@ -68,9 +68,14 @@ function DefaultErrorFallback({
             />
           </svg>
         </div>
-        <p className="text-gray-300 text-sm mb-4">
+        <p className="text-gray-300 text-sm mb-2">
           Globe visualization temporarily unavailable
         </p>
+        {error && (
+          <p className="text-red-400 text-xs mb-4 font-mono">
+            Error: {error.message}
+          </p>
+        )}
         {resetError && (
           <button
             onClick={resetError}

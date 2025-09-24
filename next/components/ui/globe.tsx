@@ -1,7 +1,7 @@
 'use client';
 
 import { OrbitControls } from '@react-three/drei';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AmbientLight, Color, DirectionalLight, Fog, PerspectiveCamera, PointLight, Scene } from 'three';
@@ -58,7 +58,8 @@ interface WorldProps {
 
 let numbersOfRings = [0];
 
-export function Globe({ globeConfig, data }: WorldProps) {
+function GlobeInner({ globeConfig, data }: WorldProps) {
+  const { scene } = useThree();
   const [globeData, setGlobeData] = useState<
     | {
         size: number;
@@ -70,13 +71,10 @@ export function Globe({ globeConfig, data }: WorldProps) {
     | null
   >(null);
 
-  const [isMounted, setIsMounted] = useState(false);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
   const globeRef = useRef<ThreeGlobe | null>(null);
-  const [globeObject] = useState(() => new ThreeGlobe());
+  const meshRef = useRef<any>(null);
 
   const defaultProps = {
     pointSize: 1,
@@ -96,21 +94,22 @@ export function Globe({ globeConfig, data }: WorldProps) {
   };
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (isMounted) {
+    if (!globeRef.current && scene) {
       try {
-        globeRef.current = globeObject;
+        const globe = new ThreeGlobe();
+        globeRef.current = globe;
+
+        if (meshRef.current) {
+          meshRef.current.add(globe);
+        }
+
         _buildData();
         _buildMaterial();
       } catch (error) {
         console.error('Error initializing globe:', error);
-        setError('Failed to initialize globe');
       }
     }
-  }, [globeObject, isMounted]);
+  }, [scene]);
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
@@ -316,7 +315,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
         );
     } catch (error) {
       console.error('Error in startAnimation:', error);
-      setError('Failed to start globe animation');
     }
   };
 
@@ -348,7 +346,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
         }
       } catch (error) {
         console.error('Error updating rings:', error);
-        setError('Failed to update globe rings');
       }
     }, 2000);
 
@@ -367,42 +364,38 @@ export function Globe({ globeConfig, data }: WorldProps) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      if (globeObject) {
-        // Clean up globe resources
+      if (globeRef.current && meshRef.current) {
         try {
-          globeObject.arcsData([]);
-          globeObject.pointsData([]);
-          globeObject.ringsData([]);
-          globeObject.hexPolygonsData([]);
+          globeRef.current.arcsData([]);
+          globeRef.current.pointsData([]);
+          globeRef.current.ringsData([]);
+          globeRef.current.hexPolygonsData([]);
+          meshRef.current.remove(globeRef.current);
         } catch (error) {
           console.warn('Error cleaning up globe resources:', error);
         }
       }
     };
-  }, [globeObject]);
+  }, []);
 
-  // Prevent hydration mismatch by only rendering on client
+  return (
+    // @ts-expect-error - React Three Fiber group element
+    <group ref={meshRef} />
+  );
+}
+
+export function Globe({ globeConfig, data }: WorldProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   if (!isMounted) {
     return null;
   }
 
-  // Error boundary fallback
-  if (error) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <p className="text-red-500 text-sm">Globe rendering error: {error}</p>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      {isMounted && globeObject && (
-        // @ts-expect-error - React Three Fiber primitive element
-        <primitive object={globeObject} />
-      )}
-    </>
-  );
+  return <GlobeInner globeConfig={globeConfig} data={data} />;
 }
 
 export function WebGLRendererConfig() {
