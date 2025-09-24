@@ -1,18 +1,15 @@
 'use client';
-// @ts-nocheck - Temporary disable TypeScript for Three.js compatibility
 
 import { OrbitControls } from '@react-three/drei';
-import { Canvas, extend, useThree } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
-import { useEffect, useRef, useState } from 'react';
-import { Color, Fog, PerspectiveCamera, Scene, Vector3 } from 'three';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { AmbientLight, Color, DirectionalLight, Fog, PerspectiveCamera, PointLight, Scene } from 'three';
 import ThreeGlobe from 'three-globe';
 
 import countries from './data/globe.json';
 
 /* eslint-disable react-hooks/exhaustive-deps */
-
-extend({ ThreeGlobe });
 
 const RING_PROPAGATION_SPEED = 3;
 const aspect = 1.2;
@@ -75,8 +72,11 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   const [isMounted, setIsMounted] = useState(false);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const globeRef = useRef<ThreeGlobe | null>(null);
+  const meshRef = useRef<any>(null);
 
   const defaultProps = {
     pointSize: 1,
@@ -100,25 +100,41 @@ export function Globe({ globeConfig, data }: WorldProps) {
   }, []);
 
   useEffect(() => {
-    if (globeRef.current && isMounted) {
+    if (isMounted) {
+      if (!globeRef.current) {
+        globeRef.current = new ThreeGlobe();
+      }
       _buildData();
       _buildMaterial();
+      if (meshRef.current) {
+        meshRef.current.add(globeRef.current);
+      }
     }
-  }, [globeRef.current, isMounted]);
+  }, [isMounted]);
+
+  useFrame(() => {
+    if (meshRef.current && globeConfig.autoRotate) {
+      meshRef.current.rotation.y += (globeConfig.autoRotateSpeed || 0.5) * 0.01;
+    }
+  });
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
 
-    const globeMaterial = globeRef.current.globeMaterial() as unknown as {
-      color: Color;
-      emissive: Color;
-      emissiveIntensity: number;
-      shininess: number;
-    };
-    globeMaterial.color = new Color(globeConfig.globeColor);
-    globeMaterial.emissive = new Color(globeConfig.emissive);
-    globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
-    globeMaterial.shininess = globeConfig.shininess || 0.9;
+    try {
+      const globeMaterial = globeRef.current.globeMaterial() as unknown as {
+        color: Color;
+        emissive: Color;
+        emissiveIntensity: number;
+        shininess: number;
+      };
+      globeMaterial.color = new Color(defaultProps.globeColor);
+      globeMaterial.emissive = new Color(defaultProps.emissive);
+      globeMaterial.emissiveIntensity = defaultProps.emissiveIntensity;
+      globeMaterial.shininess = defaultProps.shininess;
+    } catch (error) {
+      console.warn('Error setting globe material:', error);
+    }
   };
 
   const _buildData = () => {
@@ -306,13 +322,14 @@ export function Globe({ globeConfig, data }: WorldProps) {
         );
     } catch (error) {
       console.error('Error in startAnimation:', error);
+      setError('Failed to start globe animation');
     }
   };
 
   useEffect(() => {
     if (!globeRef.current || !globeData) return;
 
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       try {
         if (!globeRef.current || !globeData) return;
 
@@ -337,24 +354,59 @@ export function Globe({ globeConfig, data }: WorldProps) {
         }
       } catch (error) {
         console.error('Error updating rings:', error);
+        setError('Failed to update globe rings');
       }
     }, 2000);
 
     return () => {
-      clearInterval(interval);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globeRef.current, globeData]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      if (globeRef.current) {
+        // Clean up globe resources
+        try {
+          globeRef.current.arcsData([]);
+          globeRef.current.pointsData([]);
+          globeRef.current.ringsData([]);
+          globeRef.current.hexPolygonsData([]);
+        } catch (error) {
+          console.warn('Error cleaning up globe resources:', error);
+        }
+      }
+    };
+  }, []);
 
   // Prevent hydration mismatch by only rendering on client
   if (!isMounted) {
     return null;
   }
 
+  // Error boundary fallback
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <p className="text-red-500 text-sm">Globe rendering error: {error}</p>
+      </div>
+    );
+  }
+
   return (
     <>
-      {/* @ts-ignore */}
-      <threeGlobe ref={globeRef} />
+      {isMounted && (
+        // @ts-expect-error - React Three Fiber group element
+        <group ref={meshRef} />
+      )}
     </>
   );
 }
@@ -363,47 +415,68 @@ export function WebGLRendererConfig() {
   const { gl, size } = useThree();
 
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
-    gl.setSize(size.width, size.height);
-    gl.setClearColor(0xffaaff, 0);
-  }, []);
+    try {
+      gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      gl.setSize(size.width, size.height);
+      gl.setClearColor(0x000000, 0);
+    } catch (error) {
+      console.warn('Error configuring WebGL renderer:', error);
+    }
+  }, [gl, size]);
 
   return null;
 }
 
 export function World(props: WorldProps) {
   const { globeConfig } = props;
-  const scene = new Scene();
-  scene.fog = new Fog(0xffffff, 400, 2000);
+
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
+    <Canvas
+      camera={{ position: [0, 0, cameraZ], fov: 50, near: 180, far: 1800 }}
+      gl={{
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance"
+      }}
+      onError={(error) => console.error('Canvas error:', error)}
+    >
       <WebGLRendererConfig />
-      {/* @ts-ignore */}
-      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
-      {/* @ts-ignore */}
-      <directionalLight
-        color={globeConfig.directionalLeftLight}
-        position={new Vector3(-400, 100, 400)}
+      {/* @ts-expect-error - React Three Fiber fog element */}
+      <fog attach="fog" args={[0x000000, 400, 2000]} />
+
+      {/* @ts-expect-error - React Three Fiber ambientLight element */}
+      <ambientLight
+        color={globeConfig.ambientLight || '#38bdf8'}
+        intensity={0.6}
       />
-      {/* @ts-ignore */}
+      {/* @ts-expect-error - React Three Fiber directionalLight element */}
       <directionalLight
-        color={globeConfig.directionalTopLight}
-        position={new Vector3(-200, 500, 200)}
-      />
-      {/* @ts-ignore */}
-      <pointLight
-        color={globeConfig.pointLight}
-        position={new Vector3(-200, 500, 200)}
+        color={globeConfig.directionalLeftLight || '#ffffff'}
+        position={[-400, 100, 400]}
         intensity={0.8}
       />
+      {/* @ts-expect-error - React Three Fiber directionalLight element */}
+      <directionalLight
+        color={globeConfig.directionalTopLight || '#ffffff'}
+        position={[-200, 500, 200]}
+        intensity={0.5}
+      />
+      {/* @ts-expect-error - React Three Fiber pointLight element */}
+      <pointLight
+        color={globeConfig.pointLight || '#ffffff'}
+        position={[-200, 500, 200]}
+        intensity={0.8}
+      />
+
       <Globe {...props} />
+
       <OrbitControls
         enablePan={false}
         enableZoom={false}
         minDistance={cameraZ}
         maxDistance={cameraZ}
-        autoRotateSpeed={1}
-        autoRotate={true}
+        autoRotateSpeed={globeConfig.autoRotateSpeed || 0.5}
+        autoRotate={globeConfig.autoRotate ?? true}
         minPolarAngle={Math.PI / 3.5}
         maxPolarAngle={Math.PI - Math.PI / 3}
       />

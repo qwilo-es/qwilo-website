@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import React from 'react';
+import { GlobeErrorBoundary } from '@/components/ui/globe-error-boundary';
 
 import { IconContainer } from '../icon-container';
 import {
@@ -18,6 +19,11 @@ const World = dynamic(
   () => import('@/components/ui/globe').then((m) => m.World),
   {
     ssr: false,
+    loading: () => (
+      <div className="h-[300px] w-[300px] md:w-[600px] md:h-[600px] mx-auto flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-300"></div>
+      </div>
+    ),
   }
 );
 
@@ -462,7 +468,9 @@ export function SkeletonOne() {
         </div>
       </div>
       <div className="h-[300px] w-[300px] md:w-[600px] md:h-[600px] mx-auto absolute -bottom-20 md:-bottom-60 z-20 inset-x-0">
-        <World data={sampleArcs} globeConfig={globeConfig} />
+        <GlobeErrorBoundary>
+          <World data={sampleArcs} globeConfig={globeConfig} />
+        </GlobeErrorBoundary>
       </div>
     </div>
   );

@@ -32,7 +32,6 @@
   ],
   "exclude": [
     "node_modules",
-    "components/ui/canvas-reveal-effect.tsx",
-    "components/ui/globe.tsx"
+    "components/ui/canvas-reveal-effect.tsx"
   ]
 }
