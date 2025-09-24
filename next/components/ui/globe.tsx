@@ -1,7 +1,7 @@
 'use client';
 
 import { OrbitControls } from '@react-three/drei';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AmbientLight, Color, DirectionalLight, Fog, PerspectiveCamera, PointLight, Scene } from 'three';
@@ -77,6 +77,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   const globeRef = useRef<ThreeGlobe | null>(null);
   const meshRef = useRef<any>(null);
+  const { scene } = useThree();
 
   const defaultProps = {
     pointSize: 1,
@@ -100,23 +101,20 @@ export function Globe({ globeConfig, data }: WorldProps) {
   }, []);
 
   useEffect(() => {
-    if (isMounted) {
-      if (!globeRef.current) {
-        globeRef.current = new ThreeGlobe();
+    if (isMounted && !globeRef.current) {
+      // Create globe instance
+      const globe = new ThreeGlobe();
+      globeRef.current = globe;
+
+      // Add globe to scene
+      if (meshRef.current) {
+        meshRef.current.add(globe);
       }
+
       _buildData();
       _buildMaterial();
-      if (meshRef.current) {
-        meshRef.current.add(globeRef.current);
-      }
     }
   }, [isMounted]);
-
-  useFrame(() => {
-    if (meshRef.current && globeConfig.autoRotate) {
-      meshRef.current.rotation.y += (globeConfig.autoRotateSpeed || 0.5) * 0.01;
-    }
-  });
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
@@ -373,13 +371,15 @@ export function Globe({ globeConfig, data }: WorldProps) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      if (globeRef.current) {
+      if (globeRef.current && meshRef.current) {
         // Clean up globe resources
         try {
           globeRef.current.arcsData([]);
           globeRef.current.pointsData([]);
           globeRef.current.ringsData([]);
           globeRef.current.hexPolygonsData([]);
+          // Remove from parent
+          meshRef.current.remove(globeRef.current);
         } catch (error) {
           console.warn('Error cleaning up globe resources:', error);
         }
