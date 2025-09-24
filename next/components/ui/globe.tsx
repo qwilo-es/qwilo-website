@@ -76,8 +76,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const globeRef = useRef<ThreeGlobe | null>(null);
-  const meshRef = useRef<any>(null);
-  const { scene } = useThree();
+  const [globeObject] = useState(() => new ThreeGlobe());
 
   const defaultProps = {
     pointSize: 1,
@@ -101,20 +100,17 @@ export function Globe({ globeConfig, data }: WorldProps) {
   }, []);
 
   useEffect(() => {
-    if (isMounted && !globeRef.current) {
-      // Create globe instance
-      const globe = new ThreeGlobe();
-      globeRef.current = globe;
-
-      // Add globe to scene
-      if (meshRef.current) {
-        meshRef.current.add(globe);
+    if (isMounted) {
+      try {
+        globeRef.current = globeObject;
+        _buildData();
+        _buildMaterial();
+      } catch (error) {
+        console.error('Error initializing globe:', error);
+        setError('Failed to initialize globe');
       }
-
-      _buildData();
-      _buildMaterial();
     }
-  }, [isMounted]);
+  }, [globeObject, isMounted]);
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
@@ -371,21 +367,19 @@ export function Globe({ globeConfig, data }: WorldProps) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      if (globeRef.current && meshRef.current) {
+      if (globeObject) {
         // Clean up globe resources
         try {
-          globeRef.current.arcsData([]);
-          globeRef.current.pointsData([]);
-          globeRef.current.ringsData([]);
-          globeRef.current.hexPolygonsData([]);
-          // Remove from parent
-          meshRef.current.remove(globeRef.current);
+          globeObject.arcsData([]);
+          globeObject.pointsData([]);
+          globeObject.ringsData([]);
+          globeObject.hexPolygonsData([]);
         } catch (error) {
           console.warn('Error cleaning up globe resources:', error);
         }
       }
     };
-  }, []);
+  }, [globeObject]);
 
   // Prevent hydration mismatch by only rendering on client
   if (!isMounted) {
@@ -403,9 +397,9 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   return (
     <>
-      {isMounted && (
-        // @ts-expect-error - React Three Fiber group element
-        <group ref={meshRef} />
+      {isMounted && globeObject && (
+        // @ts-expect-error - React Three Fiber primitive element
+        <primitive object={globeObject} />
       )}
     </>
   );
