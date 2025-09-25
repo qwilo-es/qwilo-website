@@ -15,8 +15,8 @@ import {
   TwitterIcon,
 } from '@/components/icons/illustrations';
 
-const World = dynamic(
-  () => import('@/components/ui/globe').then((m) => m.World),
+const SimpleGlobe = dynamic(
+  () => import('@/components/ui/simple-globe').then((m) => ({ default: m.SimpleGlobe })),
   {
     ssr: false,
     loading: () => (
@@ -469,7 +469,7 @@ export function SkeletonOne() {
       </div>
       <div className="h-[300px] w-[300px] md:w-[600px] md:h-[600px] mx-auto absolute -bottom-20 md:-bottom-60 z-20 inset-x-0">
         <GlobeErrorBoundary>
-          <World data={sampleArcs} globeConfig={globeConfig} />
+          <SimpleGlobe data={sampleArcs} globeConfig={globeConfig} />
         </GlobeErrorBoundary>
       </div>
     </div>
