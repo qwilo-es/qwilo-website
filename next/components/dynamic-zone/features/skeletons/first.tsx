@@ -15,11 +15,8 @@ import {
 } from '@/components/icons/illustrations';
 import { GlobeErrorBoundary } from '@/components/ui/globe-error-boundary';
 
-const SimpleGlobe = dynamic(
-  () =>
-    import('@/components/ui/simple-globe').then((m) => ({
-      default: m.SimpleGlobe,
-    })),
+const World = dynamic(
+  () => import('@/components/ui/globe').then((m) => ({ default: m.World })),
   {
     ssr: false,
     loading: () => (
@@ -472,7 +469,7 @@ export function SkeletonOne() {
       </div>
       <div className="h-[300px] w-[300px] md:w-[600px] md:h-[600px] mx-auto absolute -bottom-20 md:-bottom-60 z-20 inset-x-0">
         <GlobeErrorBoundary>
-          <SimpleGlobe data={sampleArcs} globeConfig={globeConfig} />
+          <World data={sampleArcs} globeConfig={globeConfig} />
         </GlobeErrorBoundary>
       </div>
     </div>
