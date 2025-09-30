@@ -9,6 +9,7 @@ import { IoIosClose } from 'react-icons/io';
 import { LocaleSwitcher } from '../locale-switcher';
 import { Button } from '@/components/elements/button';
 import { Logo } from '@/components/logo';
+import { CALENDAR_LINK } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -109,18 +110,38 @@ export const MobileNavbar = ({
             ))}
           </div>
           <div className="flex flex-row w-full items-start gap-2.5  px-8 py-4 ">
-            {rightNavbarItems.map((item, index) => (
-              <Button
-                key={item.text}
-                variant={
-                  index === rightNavbarItems.length - 1 ? 'primary' : 'simple'
-                }
-                as={Link}
-                href={`/${locale}${item.URL}`}
-              >
-                {item.text}
-              </Button>
-            ))}
+            {rightNavbarItems.map((item, index) => {
+              const isDemoButton = item.text.toLowerCase().includes('demostración');
+              const isCalendarButton =
+                item.text.toLowerCase().includes('agendar') ||
+                item.text.toLowerCase().includes('diagnóstico');
+
+              // Use constant for calendar/booking buttons, otherwise use Strapi URL
+              let url = (isDemoButton || isCalendarButton) ? CALENDAR_LINK : item.URL;
+
+              // Clean up malformed URLs (e.g., "/https:/..." or "/http:/...")
+              if (url.startsWith('/http')) {
+                url = url.substring(1); // Remove leading slash
+              }
+
+              const isExternalLink =
+                url.startsWith('http://') || url.startsWith('https://');
+
+              return (
+                <Button
+                  key={item.text}
+                  variant={
+                    index === rightNavbarItems.length - 1 ? 'primary' : 'simple'
+                  }
+                  as={isExternalLink ? 'a' : Link}
+                  href={isExternalLink ? url : `/${locale}${url}`}
+                  target={isExternalLink ? '_blank' : undefined}
+                  rel={isExternalLink ? 'noopener noreferrer' : undefined}
+                >
+                  {item.text}
+                </Button>
+              );
+            })}
           </div>
         </div>
       )}

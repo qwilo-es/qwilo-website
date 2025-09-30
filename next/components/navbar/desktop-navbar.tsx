@@ -93,9 +93,20 @@ export const DesktopNavbar = ({
 
         {rightNavbarItems.map((item, index) => {
           const isDemoButton = item.text.toLowerCase().includes('demostración');
-          const url = isDemoButton ? CALENDAR_LINK : item.URL;
+          const isCalendarButton =
+            item.text.toLowerCase().includes('agendar') ||
+            item.text.toLowerCase().includes('diagnóstico');
+
+          // Use constant for calendar/booking buttons, otherwise use Strapi URL
+          let url = (isDemoButton || isCalendarButton) ? CALENDAR_LINK : item.URL;
+
+          // Clean up malformed URLs (e.g., "/https:/..." or "/http:/...")
+          if (url.startsWith('/http')) {
+            url = url.substring(1); // Remove leading slash
+          }
+
           const isExternalLink =
-            url.startsWith('http') || url.startsWith('https');
+            url.startsWith('http://') || url.startsWith('https://');
 
           return (
             <Button
