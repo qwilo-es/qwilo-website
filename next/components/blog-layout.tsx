@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { Link } from 'next-view-transitions';
 
 import { Container } from './container';
+import { AmbientColor } from './decorations/ambient-color';
 import DynamicZoneManager from './dynamic-zone/manager';
 import { StrapiImage } from '@/components/ui/strapi-image';
 import { Article } from '@/types/types';
@@ -17,7 +18,9 @@ export async function BlogLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Container className="mt-16 lg:mt-32">
+    <div className="relative overflow-hidden">
+      <AmbientColor />
+      <Container className="mt-16 lg:mt-32">
       <div className="flex justify-between items-center px-2 py-8">
         <Link href="/blog" className="flex space-x-2 items-center">
           <IconArrowLeft className="w-4 h-4 text-muted" />
@@ -90,6 +93,7 @@ export async function BlogLayout({
           locale={locale}
         />
       )}
-    </Container>
+      </Container>
+    </div>
   );
 }
