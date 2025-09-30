@@ -65,6 +65,10 @@ export default async function Blog(props: {
       'articles',
       {
         filters: { locale: params.locale },
+        populate: {
+          categories: true,
+          image: true,
+        },
       },
       false
     );
