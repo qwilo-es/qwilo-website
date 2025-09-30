@@ -85,8 +85,13 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         renderer.setClearColor(0x000000, 0);
 
         // Clear container and add renderer
-        while (container.firstChild) {
-          container.removeChild(container.firstChild);
+        try {
+          // Only clear if we need to
+          if (container.firstChild) {
+            container.innerHTML = '';
+          }
+        } catch (e) {
+          console.warn('Error clearing container:', e);
         }
         container.appendChild(renderer.domElement);
 
