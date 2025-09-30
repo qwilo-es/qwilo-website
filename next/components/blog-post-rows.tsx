@@ -56,7 +56,7 @@ export const BlogPostRow = ({ article }: { article: Article }) => {
       className="flex md:flex-row flex-col items-start justify-between md:items-center group py-4"
     >
       <div>
-        <p className="text-neutral-300 text-lg font-medium group-hover:text-white transition duration-200">
+        <p className="text-white text-lg font-medium group-hover:text-white transition duration-200">
           {article.title}
         </p>
         <p className="text-neutral-300 text-sm mt-2 max-w-xl group-hover:text-white transition duration-200">
