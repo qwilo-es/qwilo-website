@@ -85,7 +85,9 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         renderer.setClearColor(0x000000, 0);
 
         // Clear container and add renderer
-        container.innerHTML = '';
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
         container.appendChild(renderer.domElement);
 
         // Lighting
@@ -292,11 +294,27 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         cancelAnimationFrame(animationId);
       }
       if (renderer) {
+        const domElement = renderer.domElement;
         renderer.dispose();
+        // Safely remove the canvas element
+        if (domElement && domElement.parentNode) {
+          domElement.parentNode.removeChild(domElement);
+        }
       }
-      const container = containerRef.current;
-      if (container) {
-        container.innerHTML = '';
+      if (scene) {
+        // Clean up scene
+        scene.traverse((object) => {
+          if (object instanceof THREE.Mesh) {
+            object.geometry?.dispose();
+            if (object.material) {
+              if (Array.isArray(object.material)) {
+                object.material.forEach((material) => material.dispose());
+              } else {
+                object.material.dispose();
+              }
+            }
+          }
+        });
       }
       window.removeEventListener('resize', handleResize);
     };
