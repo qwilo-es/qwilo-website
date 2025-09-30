@@ -1,1 +1,15 @@
-{"name":"large_Products.jpg","hash":"large_Products_e1d1d2b0bf","ext":".jpg","mime":"image/jpeg","path":null,"width":1000,"height":503,"size":16.07,"sizeInBytes":16073,"url":"/uploads/large_Products_e1d1d2b0bf.jpg","type":"large","id":39,"mainHash":"Products_e1d1d2b0bf"}
+{
+  "name": "large_Products.jpg",
+  "hash": "large_Products_e1d1d2b0bf",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 1000,
+  "height": 503,
+  "size": 16.07,
+  "sizeInBytes": 16073,
+  "url": "/uploads/large_Products_e1d1d2b0bf.jpg",
+  "type": "large",
+  "id": 39,
+  "mainHash": "Products_e1d1d2b0bf"
+}

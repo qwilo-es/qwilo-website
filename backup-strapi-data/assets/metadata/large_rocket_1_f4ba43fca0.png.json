@@ -1,1 +1,15 @@
-{"name":"large_rocket-1.png","hash":"large_rocket_1_f4ba43fca0","ext":".png","mime":"image/png","path":null,"width":1000,"height":1000,"size":2238.12,"sizeInBytes":2238124,"url":"/uploads/large_rocket_1_f4ba43fca0.png","type":"large","id":19,"mainHash":"rocket_1_f4ba43fca0"}
+{
+  "name": "large_rocket-1.png",
+  "hash": "large_rocket_1_f4ba43fca0",
+  "ext": ".png",
+  "mime": "image/png",
+  "path": null,
+  "width": 1000,
+  "height": 1000,
+  "size": 2238.12,
+  "sizeInBytes": 2238124,
+  "url": "/uploads/large_rocket_1_f4ba43fca0.png",
+  "type": "large",
+  "id": 19,
+  "mainHash": "rocket_1_f4ba43fca0"
+}

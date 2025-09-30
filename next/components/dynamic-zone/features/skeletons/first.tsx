@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic';
 import React from 'react';
-import { GlobeErrorBoundary } from '@/components/ui/globe-error-boundary';
 
 import { IconContainer } from '../icon-container';
 import {
@@ -14,9 +13,13 @@ import {
   TiktokIcon,
   TwitterIcon,
 } from '@/components/icons/illustrations';
+import { GlobeErrorBoundary } from '@/components/ui/globe-error-boundary';
 
 const SimpleGlobe = dynamic(
-  () => import('@/components/ui/simple-globe').then((m) => ({ default: m.SimpleGlobe })),
+  () =>
+    import('@/components/ui/simple-globe').then((m) => ({
+      default: m.SimpleGlobe,
+    })),
   {
     ssr: false,
     loading: () => (

@@ -78,18 +78,20 @@ export const MobileNavbar = ({
               <div key={`nav-item-${idx}`}>
                 {navItem.children && navItem.children.length > 0 ? (
                   <div className="flex flex-col gap-[14px]">
-                    {navItem.children.map((childNavItem: any, childIdx: number) => (
-                      <Link
-                        key={`child-link-${idx}-${childIdx}`}
-                        href={`/${locale}${childNavItem.URL}`}
-                        onClick={() => setOpen(false)}
-                        className="relative max-w-[15rem] text-left text-2xl"
-                      >
-                        <span className="block text-white">
-                          {childNavItem.text}
-                        </span>
-                      </Link>
-                    ))}
+                    {navItem.children.map(
+                      (childNavItem: any, childIdx: number) => (
+                        <Link
+                          key={`child-link-${idx}-${childIdx}`}
+                          href={`/${locale}${childNavItem.URL}`}
+                          onClick={() => setOpen(false)}
+                          className="relative max-w-[15rem] text-left text-2xl"
+                        >
+                          <span className="block text-white">
+                            {childNavItem.text}
+                          </span>
+                        </Link>
+                      )
+                    )}
                   </div>
                 ) : (
                   <Link

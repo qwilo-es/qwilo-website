@@ -1,1 +1,15 @@
-{"name":"medium_logo.png","hash":"medium_logo_6a13c79c4b","ext":".png","mime":"image/png","path":null,"width":750,"height":750,"size":236.68,"sizeInBytes":236682,"url":"/uploads/medium_logo_6a13c79c4b.png","type":"medium","id":10,"mainHash":"logo_6a13c79c4b"}
+{
+  "name": "medium_logo.png",
+  "hash": "medium_logo_6a13c79c4b",
+  "ext": ".png",
+  "mime": "image/png",
+  "path": null,
+  "width": 750,
+  "height": 750,
+  "size": 236.68,
+  "sizeInBytes": 236682,
+  "url": "/uploads/medium_logo_6a13c79c4b.png",
+  "type": "medium",
+  "id": 10,
+  "mainHash": "logo_6a13c79c4b"
+}

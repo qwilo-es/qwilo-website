@@ -1,1 +1,15 @@
-{"name":"large_Pricing.jpg","hash":"large_Pricing_8c8f61211e","ext":".jpg","mime":"image/jpeg","path":null,"width":1000,"height":503,"size":37.35,"sizeInBytes":37346,"url":"/uploads/large_Pricing_8c8f61211e.jpg","type":"large","id":41,"mainHash":"Pricing_8c8f61211e"}
+{
+  "name": "large_Pricing.jpg",
+  "hash": "large_Pricing_8c8f61211e",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 1000,
+  "height": 503,
+  "size": 37.35,
+  "sizeInBytes": 37346,
+  "url": "/uploads/large_Pricing_8c8f61211e.jpg",
+  "type": "large",
+  "id": 41,
+  "mainHash": "Pricing_8c8f61211e"
+}

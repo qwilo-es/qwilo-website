@@ -1,1 +1,15 @@
-{"name":"thumbnail_Blog.jpg","hash":"thumbnail_Blog_bd35597734","ext":".jpg","mime":"image/jpeg","path":null,"width":245,"height":123,"size":1.38,"sizeInBytes":1379,"url":"/uploads/thumbnail_Blog_bd35597734.jpg","type":"thumbnail","id":40,"mainHash":"Blog_bd35597734"}
+{
+  "name": "thumbnail_Blog.jpg",
+  "hash": "thumbnail_Blog_bd35597734",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 245,
+  "height": 123,
+  "size": 1.38,
+  "sizeInBytes": 1379,
+  "url": "/uploads/thumbnail_Blog_bd35597734.jpg",
+  "type": "thumbnail",
+  "id": 40,
+  "mainHash": "Blog_bd35597734"
+}

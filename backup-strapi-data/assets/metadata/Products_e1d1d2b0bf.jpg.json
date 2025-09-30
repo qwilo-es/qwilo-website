@@ -1,1 +1,72 @@
-{"id":39,"documentId":"g88f115y0kndyoyjg6t4akv8","name":"Products.jpg","alternativeText":null,"caption":null,"width":1920,"height":966,"formats":{"thumbnail":{"name":"thumbnail_Products.jpg","hash":"thumbnail_Products_e1d1d2b0bf","ext":".jpg","mime":"image/jpeg","path":null,"width":245,"height":123,"size":1.61,"sizeInBytes":1613,"url":"/uploads/thumbnail_Products_e1d1d2b0bf.jpg"},"large":{"name":"large_Products.jpg","hash":"large_Products_e1d1d2b0bf","ext":".jpg","mime":"image/jpeg","path":null,"width":1000,"height":503,"size":16.07,"sizeInBytes":16073,"url":"/uploads/large_Products_e1d1d2b0bf.jpg"},"medium":{"name":"medium_Products.jpg","hash":"medium_Products_e1d1d2b0bf","ext":".jpg","mime":"image/jpeg","path":null,"width":750,"height":377,"size":9.85,"sizeInBytes":9849,"url":"/uploads/medium_Products_e1d1d2b0bf.jpg"},"small":{"name":"small_Products.jpg","hash":"small_Products_e1d1d2b0bf","ext":".jpg","mime":"image/jpeg","path":null,"width":500,"height":252,"size":4.45,"sizeInBytes":4445,"url":"/uploads/small_Products_e1d1d2b0bf.jpg"}},"hash":"Products_e1d1d2b0bf","ext":".jpg","mime":"image/jpeg","size":42.59,"url":"/uploads/Products_e1d1d2b0bf.jpg","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/3","createdAt":"2024-09-16T12:28:44.143Z","updatedAt":"2025-04-07T15:22:13.131Z","publishedAt":"2024-09-16T12:28:44.144Z","locale":null}
+{
+  "id": 39,
+  "documentId": "g88f115y0kndyoyjg6t4akv8",
+  "name": "Products.jpg",
+  "alternativeText": null,
+  "caption": null,
+  "width": 1920,
+  "height": 966,
+  "formats": {
+    "thumbnail": {
+      "name": "thumbnail_Products.jpg",
+      "hash": "thumbnail_Products_e1d1d2b0bf",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 245,
+      "height": 123,
+      "size": 1.61,
+      "sizeInBytes": 1613,
+      "url": "/uploads/thumbnail_Products_e1d1d2b0bf.jpg"
+    },
+    "large": {
+      "name": "large_Products.jpg",
+      "hash": "large_Products_e1d1d2b0bf",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 1000,
+      "height": 503,
+      "size": 16.07,
+      "sizeInBytes": 16073,
+      "url": "/uploads/large_Products_e1d1d2b0bf.jpg"
+    },
+    "medium": {
+      "name": "medium_Products.jpg",
+      "hash": "medium_Products_e1d1d2b0bf",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 750,
+      "height": 377,
+      "size": 9.85,
+      "sizeInBytes": 9849,
+      "url": "/uploads/medium_Products_e1d1d2b0bf.jpg"
+    },
+    "small": {
+      "name": "small_Products.jpg",
+      "hash": "small_Products_e1d1d2b0bf",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 500,
+      "height": 252,
+      "size": 4.45,
+      "sizeInBytes": 4445,
+      "url": "/uploads/small_Products_e1d1d2b0bf.jpg"
+    }
+  },
+  "hash": "Products_e1d1d2b0bf",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "size": 42.59,
+  "url": "/uploads/Products_e1d1d2b0bf.jpg",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/3",
+  "createdAt": "2024-09-16T12:28:44.143Z",
+  "updatedAt": "2025-04-07T15:22:13.131Z",
+  "publishedAt": "2024-09-16T12:28:44.144Z",
+  "locale": null
+}

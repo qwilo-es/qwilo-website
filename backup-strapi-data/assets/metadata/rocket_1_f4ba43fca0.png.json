@@ -1,1 +1,72 @@
-{"id":19,"documentId":"dgvxwxtr5pxwozkguevv50e3","name":"rocket-1.png","alternativeText":null,"caption":null,"width":1024,"height":1024,"formats":{"thumbnail":{"name":"thumbnail_rocket-1.png","hash":"thumbnail_rocket_1_f4ba43fca0","ext":".png","mime":"image/png","path":null,"width":156,"height":156,"size":62.44,"sizeInBytes":62436,"url":"/uploads/thumbnail_rocket_1_f4ba43fca0.png"},"small":{"name":"small_rocket-1.png","hash":"small_rocket_1_f4ba43fca0","ext":".png","mime":"image/png","path":null,"width":500,"height":500,"size":594.69,"sizeInBytes":594692,"url":"/uploads/small_rocket_1_f4ba43fca0.png"},"medium":{"name":"medium_rocket-1.png","hash":"medium_rocket_1_f4ba43fca0","ext":".png","mime":"image/png","path":null,"width":750,"height":750,"size":1319.64,"sizeInBytes":1319639,"url":"/uploads/medium_rocket_1_f4ba43fca0.png"},"large":{"name":"large_rocket-1.png","hash":"large_rocket_1_f4ba43fca0","ext":".png","mime":"image/png","path":null,"width":1000,"height":1000,"size":2238.12,"sizeInBytes":2238124,"url":"/uploads/large_rocket_1_f4ba43fca0.png"}},"hash":"rocket_1_f4ba43fca0","ext":".png","mime":"image/png","size":575.75,"url":"/uploads/rocket_1_f4ba43fca0.png","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/","createdAt":"2024-08-07T14:30:24.890Z","updatedAt":"2025-04-07T15:22:11.484Z","publishedAt":"2024-08-07T14:30:24.890Z","locale":null}
+{
+  "id": 19,
+  "documentId": "dgvxwxtr5pxwozkguevv50e3",
+  "name": "rocket-1.png",
+  "alternativeText": null,
+  "caption": null,
+  "width": 1024,
+  "height": 1024,
+  "formats": {
+    "thumbnail": {
+      "name": "thumbnail_rocket-1.png",
+      "hash": "thumbnail_rocket_1_f4ba43fca0",
+      "ext": ".png",
+      "mime": "image/png",
+      "path": null,
+      "width": 156,
+      "height": 156,
+      "size": 62.44,
+      "sizeInBytes": 62436,
+      "url": "/uploads/thumbnail_rocket_1_f4ba43fca0.png"
+    },
+    "small": {
+      "name": "small_rocket-1.png",
+      "hash": "small_rocket_1_f4ba43fca0",
+      "ext": ".png",
+      "mime": "image/png",
+      "path": null,
+      "width": 500,
+      "height": 500,
+      "size": 594.69,
+      "sizeInBytes": 594692,
+      "url": "/uploads/small_rocket_1_f4ba43fca0.png"
+    },
+    "medium": {
+      "name": "medium_rocket-1.png",
+      "hash": "medium_rocket_1_f4ba43fca0",
+      "ext": ".png",
+      "mime": "image/png",
+      "path": null,
+      "width": 750,
+      "height": 750,
+      "size": 1319.64,
+      "sizeInBytes": 1319639,
+      "url": "/uploads/medium_rocket_1_f4ba43fca0.png"
+    },
+    "large": {
+      "name": "large_rocket-1.png",
+      "hash": "large_rocket_1_f4ba43fca0",
+      "ext": ".png",
+      "mime": "image/png",
+      "path": null,
+      "width": 1000,
+      "height": 1000,
+      "size": 2238.12,
+      "sizeInBytes": 2238124,
+      "url": "/uploads/large_rocket_1_f4ba43fca0.png"
+    }
+  },
+  "hash": "rocket_1_f4ba43fca0",
+  "ext": ".png",
+  "mime": "image/png",
+  "size": 575.75,
+  "url": "/uploads/rocket_1_f4ba43fca0.png",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/",
+  "createdAt": "2024-08-07T14:30:24.890Z",
+  "updatedAt": "2025-04-07T15:22:11.484Z",
+  "publishedAt": "2024-08-07T14:30:24.890Z",
+  "locale": null
+}

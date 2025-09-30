@@ -1,1 +1,72 @@
-{"id":40,"documentId":"vuc9ddahfwfckq8y01sbu5dl","name":"Blog.jpg","alternativeText":null,"caption":null,"width":1920,"height":966,"formats":{"thumbnail":{"name":"thumbnail_Blog.jpg","hash":"thumbnail_Blog_bd35597734","ext":".jpg","mime":"image/jpeg","path":null,"width":245,"height":123,"size":1.38,"sizeInBytes":1379,"url":"/uploads/thumbnail_Blog_bd35597734.jpg"},"large":{"name":"large_Blog.jpg","hash":"large_Blog_bd35597734","ext":".jpg","mime":"image/jpeg","path":null,"width":1000,"height":503,"size":14.93,"sizeInBytes":14932,"url":"/uploads/large_Blog_bd35597734.jpg"},"small":{"name":"small_Blog.jpg","hash":"small_Blog_bd35597734","ext":".jpg","mime":"image/jpeg","path":null,"width":500,"height":252,"size":4.09,"sizeInBytes":4093,"url":"/uploads/small_Blog_bd35597734.jpg"},"medium":{"name":"medium_Blog.jpg","hash":"medium_Blog_bd35597734","ext":".jpg","mime":"image/jpeg","path":null,"width":750,"height":377,"size":8.95,"sizeInBytes":8953,"url":"/uploads/medium_Blog_bd35597734.jpg"}},"hash":"Blog_bd35597734","ext":".jpg","mime":"image/jpeg","size":39.6,"url":"/uploads/Blog_bd35597734.jpg","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/3","createdAt":"2024-09-16T12:29:58.211Z","updatedAt":"2025-04-07T15:22:13.286Z","publishedAt":"2024-09-16T12:29:58.211Z","locale":null}
+{
+  "id": 40,
+  "documentId": "vuc9ddahfwfckq8y01sbu5dl",
+  "name": "Blog.jpg",
+  "alternativeText": null,
+  "caption": null,
+  "width": 1920,
+  "height": 966,
+  "formats": {
+    "thumbnail": {
+      "name": "thumbnail_Blog.jpg",
+      "hash": "thumbnail_Blog_bd35597734",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 245,
+      "height": 123,
+      "size": 1.38,
+      "sizeInBytes": 1379,
+      "url": "/uploads/thumbnail_Blog_bd35597734.jpg"
+    },
+    "large": {
+      "name": "large_Blog.jpg",
+      "hash": "large_Blog_bd35597734",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 1000,
+      "height": 503,
+      "size": 14.93,
+      "sizeInBytes": 14932,
+      "url": "/uploads/large_Blog_bd35597734.jpg"
+    },
+    "small": {
+      "name": "small_Blog.jpg",
+      "hash": "small_Blog_bd35597734",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 500,
+      "height": 252,
+      "size": 4.09,
+      "sizeInBytes": 4093,
+      "url": "/uploads/small_Blog_bd35597734.jpg"
+    },
+    "medium": {
+      "name": "medium_Blog.jpg",
+      "hash": "medium_Blog_bd35597734",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 750,
+      "height": 377,
+      "size": 8.95,
+      "sizeInBytes": 8953,
+      "url": "/uploads/medium_Blog_bd35597734.jpg"
+    }
+  },
+  "hash": "Blog_bd35597734",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "size": 39.6,
+  "url": "/uploads/Blog_bd35597734.jpg",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/3",
+  "createdAt": "2024-09-16T12:29:58.211Z",
+  "updatedAt": "2025-04-07T15:22:13.286Z",
+  "publishedAt": "2024-09-16T12:29:58.211Z",
+  "locale": null
+}

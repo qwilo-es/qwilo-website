@@ -1,1 +1,23 @@
-{"id":21,"documentId":"nj37ryj8y86uj6skx3lm93m2","name":"dora-mirta.jpg","alternativeText":null,"caption":null,"width":128,"height":128,"formats":null,"hash":"dora_mirta_fb6c81be88","ext":".jpg","mime":"image/jpeg","size":4.07,"url":"/uploads/dora_mirta_fb6c81be88.jpg","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/2","createdAt":"2024-09-05T13:06:31.954Z","updatedAt":"2025-04-07T15:22:11.646Z","publishedAt":"2024-09-05T13:06:31.955Z","locale":null}
+{
+  "id": 21,
+  "documentId": "nj37ryj8y86uj6skx3lm93m2",
+  "name": "dora-mirta.jpg",
+  "alternativeText": null,
+  "caption": null,
+  "width": 128,
+  "height": 128,
+  "formats": null,
+  "hash": "dora_mirta_fb6c81be88",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "size": 4.07,
+  "url": "/uploads/dora_mirta_fb6c81be88.jpg",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/2",
+  "createdAt": "2024-09-05T13:06:31.954Z",
+  "updatedAt": "2025-04-07T15:22:11.646Z",
+  "publishedAt": "2024-09-05T13:06:31.955Z",
+  "locale": null
+}

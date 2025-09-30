@@ -45,7 +45,7 @@ export class GlobeErrorBoundary extends React.Component<
 
 function DefaultErrorFallback({
   error,
-  resetError
+  resetError,
 }: {
   error?: Error;
   resetError?: () => void;

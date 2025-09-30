@@ -4,7 +4,15 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AmbientLight, Color, DirectionalLight, Fog, PerspectiveCamera, PointLight, Scene } from 'three';
+import {
+  AmbientLight,
+  Color,
+  DirectionalLight,
+  Fog,
+  PerspectiveCamera,
+  PointLight,
+  Scene,
+} from 'three';
 import ThreeGlobe from 'three-globe';
 
 import countries from './data/globe.json';
@@ -378,10 +386,7 @@ function GlobeInner({ globeConfig, data }: WorldProps) {
     };
   }, []);
 
-  return (
-    // @ts-expect-error - React Three Fiber group element
-    <group ref={meshRef} />
-  );
+  return <group ref={meshRef} />;
 }
 
 export function Globe({ globeConfig, data }: WorldProps) {
@@ -423,32 +428,27 @@ export function World(props: WorldProps) {
       gl={{
         antialias: true,
         alpha: true,
-        powerPreference: "high-performance"
+        powerPreference: 'high-performance',
       }}
       onError={(error) => console.error('Canvas error:', error)}
     >
       <WebGLRendererConfig />
-      {/* @ts-expect-error - React Three Fiber fog element */}
       <fog attach="fog" args={[0x000000, 400, 2000]} />
 
-      {/* @ts-expect-error - React Three Fiber ambientLight element */}
       <ambientLight
         color={globeConfig.ambientLight || '#38bdf8'}
         intensity={0.6}
       />
-      {/* @ts-expect-error - React Three Fiber directionalLight element */}
       <directionalLight
         color={globeConfig.directionalLeftLight || '#ffffff'}
         position={[-400, 100, 400]}
         intensity={0.8}
       />
-      {/* @ts-expect-error - React Three Fiber directionalLight element */}
       <directionalLight
         color={globeConfig.directionalTopLight || '#ffffff'}
         position={[-200, 500, 200]}
         intensity={0.5}
       />
-      {/* @ts-expect-error - React Three Fiber pointLight element */}
       <pointLight
         color={globeConfig.pointLight || '#ffffff'}
         position={[-200, 500, 200]}

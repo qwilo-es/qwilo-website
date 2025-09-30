@@ -89,7 +89,9 @@ export const Card = ({
           />
         </motion.div>
 
-        <p className="text-xl font-bold text-white relative z-20 mt-2">{title}</p>
+        <p className="text-xl font-bold text-white relative z-20 mt-2">
+          {title}
+        </p>
         <p className="text-neutral-400 mt-4 relative z-20">{description}</p>
       </div>
     </div>

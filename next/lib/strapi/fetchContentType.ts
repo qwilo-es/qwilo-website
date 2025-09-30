@@ -34,7 +34,7 @@ export default async function fetchContentType(
   spreadData?: boolean
 ): Promise<any> {
   let isDraftMode = false;
-  
+
   try {
     const draftModeResult = await draftMode();
     isDraftMode = draftModeResult.isEnabled;
@@ -49,7 +49,7 @@ export default async function fetchContentType(
       API_URL: process.env.NEXT_PUBLIC_API_URL,
       HAS_TOKEN: !!process.env.STRAPI_API_TOKEN,
       CONTENT_TYPE: contentType,
-      DRAFT_MODE: isDraftMode
+      DRAFT_MODE: isDraftMode,
     });
 
     // Check if API URL is configured

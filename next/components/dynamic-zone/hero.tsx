@@ -46,23 +46,36 @@ export const Hero = ({
       <div className="flex space-x-4 items-center mt-8">
         {CTAs &&
           CTAs.map((cta) => {
-            const isDemoButton = cta.text.toLowerCase().includes('sesión') || cta.text.toLowerCase().includes('estratégica');
+            const isDemoButton =
+              cta.text.toLowerCase().includes('sesión') ||
+              cta.text.toLowerCase().includes('estratégica');
             const url = isDemoButton ? CALENDAR_LINK : cta.URL;
-            const isExternalLink = url.startsWith('http') || url.startsWith('https');
+            const isExternalLink =
+              url.startsWith('http') || url.startsWith('https');
 
             return (
               <Button
                 key={cta?.id}
                 as="a"
-                href={isDemoButton ? CALENDAR_LINK : (isExternalLink ? url : undefined)}
-                target={isDemoButton || isExternalLink ? "_blank" : undefined}
-                rel={isDemoButton || isExternalLink ? "noopener noreferrer" : undefined}
+                href={
+                  isDemoButton
+                    ? CALENDAR_LINK
+                    : isExternalLink
+                      ? url
+                      : undefined
+                }
+                target={isDemoButton || isExternalLink ? '_blank' : undefined}
+                rel={
+                  isDemoButton || isExternalLink
+                    ? 'noopener noreferrer'
+                    : undefined
+                }
                 onClick={
                   !isDemoButton && !isExternalLink && cta.URL === '#features'
                     ? onScrollToFeatures
                     : undefined
                 }
-                className={isDemoButton ? "text-base px-6 py-3" : undefined}
+                className={isDemoButton ? 'text-base px-6 py-3' : undefined}
                 {...(cta.variant && { variant: cta.variant })}
               >
                 {cta.text}

@@ -1,1 +1,15 @@
-{"name":"medium_FAQ.jpg","hash":"medium_FAQ_576e799607","ext":".jpg","mime":"image/jpeg","path":null,"width":750,"height":377,"size":6.37,"sizeInBytes":6366,"url":"/uploads/medium_FAQ_576e799607.jpg","type":"medium","id":42,"mainHash":"FAQ_576e799607"}
+{
+  "name": "medium_FAQ.jpg",
+  "hash": "medium_FAQ_576e799607",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 750,
+  "height": 377,
+  "size": 6.37,
+  "sizeInBytes": 6366,
+  "url": "/uploads/medium_FAQ_576e799607.jpg",
+  "type": "medium",
+  "id": 42,
+  "mainHash": "FAQ_576e799607"
+}

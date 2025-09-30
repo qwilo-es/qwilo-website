@@ -1,1 +1,15 @@
-{"name":"small_dashboard.png","hash":"small_dashboard_106c0d6b4b","ext":".png","mime":"image/png","path":null,"width":500,"height":500,"size":357.2,"sizeInBytes":357198,"url":"/uploads/small_dashboard_106c0d6b4b.png","type":"small","id":16,"mainHash":"dashboard_106c0d6b4b"}
+{
+  "name": "small_dashboard.png",
+  "hash": "small_dashboard_106c0d6b4b",
+  "ext": ".png",
+  "mime": "image/png",
+  "path": null,
+  "width": 500,
+  "height": 500,
+  "size": 357.2,
+  "sizeInBytes": 357198,
+  "url": "/uploads/small_dashboard_106c0d6b4b.png",
+  "type": "small",
+  "id": 16,
+  "mainHash": "dashboard_106c0d6b4b"
+}

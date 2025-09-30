@@ -83,7 +83,9 @@ const LinkSection = ({
 }) => (
   <div className="flex justify-center space-y-4 flex-col mt-4">
     {links.map((link) => {
-      const isScheduleLink = link.text.toLowerCase().includes('agendar') || link.text.toLowerCase().includes('llamada');
+      const isScheduleLink =
+        link.text.toLowerCase().includes('agendar') ||
+        link.text.toLowerCase().includes('llamada');
       const url = isScheduleLink ? CALENDAR_LINK : link.URL;
       const isExternalLink = url.startsWith('http') || url.startsWith('https');
 
@@ -94,8 +96,8 @@ const LinkSection = ({
           className="transition-colors hover:text-neutral-400 text-muted text-xs sm:text-sm"
           href={isExternalLink ? url : `/${locale}${url}`}
           {...(isExternalLink && {
-            target: "_blank",
-            rel: "noopener noreferrer"
+            target: '_blank',
+            rel: 'noopener noreferrer',
           })}
         >
           {link.text}

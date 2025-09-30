@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { useEffect, useRef, useState } from 'react';
 
 import countries from './data/globe.json';
 
@@ -62,8 +62,6 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
 
     const initGlobe = async () => {
       try {
-        console.log('Initializing basic three.js globe...');
-
         // Scene setup
         scene = new THREE.Scene();
         scene.fog = new THREE.Fog(0x000000, 400, 2000);
@@ -80,7 +78,7 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         renderer = new THREE.WebGLRenderer({
           antialias: true,
           alpha: true,
-          powerPreference: "high-performance"
+          powerPreference: 'high-performance',
         });
         renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -91,18 +89,30 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         container.appendChild(renderer.domElement);
 
         // Lighting
-        const ambientLight = new THREE.AmbientLight(globeConfig.ambientLight || '#38bdf8', 0.6);
+        const ambientLight = new THREE.AmbientLight(
+          globeConfig.ambientLight || '#38bdf8',
+          0.6
+        );
         scene.add(ambientLight);
 
-        const directionalLight1 = new THREE.DirectionalLight(globeConfig.directionalLeftLight || '#ffffff', 0.8);
+        const directionalLight1 = new THREE.DirectionalLight(
+          globeConfig.directionalLeftLight || '#ffffff',
+          0.8
+        );
         directionalLight1.position.set(-400, 100, 400);
         scene.add(directionalLight1);
 
-        const directionalLight2 = new THREE.DirectionalLight(globeConfig.directionalTopLight || '#ffffff', 0.5);
+        const directionalLight2 = new THREE.DirectionalLight(
+          globeConfig.directionalTopLight || '#ffffff',
+          0.5
+        );
         directionalLight2.position.set(-200, 500, 200);
         scene.add(directionalLight2);
 
-        const pointLight = new THREE.PointLight(globeConfig.pointLight || '#ffffff', 0.8);
+        const pointLight = new THREE.PointLight(
+          globeConfig.pointLight || '#ffffff',
+          0.8
+        );
         pointLight.position.set(-200, 500, 200);
         scene.add(pointLight);
 
@@ -118,7 +128,7 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
           wireframe: true,
           wireframeLinewidth: 1,
           transparent: true,
-          opacity: 0.8
+          opacity: 0.8,
         });
 
         globe = new THREE.Mesh(globeGeometry, globeMaterial);
@@ -126,7 +136,9 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
 
         // Add some random dots on the globe to simulate countries/points
         const dotGeometry = new THREE.SphereGeometry(1, 8, 8);
-        const dotMaterial = new THREE.MeshBasicMaterial({ color: globeConfig.polygonColor || '#ffffff' });
+        const dotMaterial = new THREE.MeshBasicMaterial({
+          color: globeConfig.polygonColor || '#ffffff',
+        });
 
         for (let i = 0; i < 50; i++) {
           const dot = new THREE.Mesh(dotGeometry, dotMaterial);
@@ -145,31 +157,46 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
 
         // Add arcs as simple curved lines
         if (data && data.length > 0) {
-          const validArcs = data.filter(arc =>
-            typeof arc.startLat === 'number' && Number.isFinite(arc.startLat) &&
-            typeof arc.startLng === 'number' && Number.isFinite(arc.startLng) &&
-            typeof arc.endLat === 'number' && Number.isFinite(arc.endLat) &&
-            typeof arc.endLng === 'number' && Number.isFinite(arc.endLng)
-          ).slice(0, 10); // Limit to 10 arcs for performance
+          const validArcs = data
+            .filter(
+              (arc) =>
+                typeof arc.startLat === 'number' &&
+                Number.isFinite(arc.startLat) &&
+                typeof arc.startLng === 'number' &&
+                Number.isFinite(arc.startLng) &&
+                typeof arc.endLat === 'number' &&
+                Number.isFinite(arc.endLat) &&
+                typeof arc.endLng === 'number' &&
+                Number.isFinite(arc.endLng)
+            )
+            .slice(0, 10); // Limit to 10 arcs for performance
 
-          validArcs.forEach(arc => {
+          validArcs.forEach((arc) => {
             // Convert lat/lng to 3D coordinates
-            const startVector = latLngToVector3(arc.startLat, arc.startLng, 101);
+            const startVector = latLngToVector3(
+              arc.startLat,
+              arc.startLng,
+              101
+            );
             const endVector = latLngToVector3(arc.endLat, arc.endLng, 101);
 
             // Create curved line
             const curve = new THREE.QuadraticBezierCurve3(
               startVector,
-              new THREE.Vector3().lerpVectors(startVector, endVector, 0.5).multiplyScalar(1.3),
+              new THREE.Vector3()
+                .lerpVectors(startVector, endVector, 0.5)
+                .multiplyScalar(1.3),
               endVector
             );
 
             const points = curve.getPoints(20);
-            const arcGeometry = new THREE.BufferGeometry().setFromPoints(points);
+            const arcGeometry = new THREE.BufferGeometry().setFromPoints(
+              points
+            );
             const arcMaterial = new THREE.LineBasicMaterial({
               color: arc.color || '#d4d4d4',
               transparent: true,
-              opacity: 0.6
+              opacity: 0.6,
             });
 
             const arcLine = new THREE.Line(arcGeometry, arcMaterial);
@@ -178,7 +205,8 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         }
 
         // Simple orbit controls (manual)
-        let mouseX = 0, mouseY = 0;
+        let mouseX = 0,
+          mouseY = 0;
         let isMouseDown = false;
 
         const onMouseDown = (event: MouseEvent) => {
@@ -222,11 +250,11 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
 
         animate();
         setIsLoaded(true);
-        console.log('Basic globe initialized successfully');
-
       } catch (err) {
         console.error('Error initializing basic globe:', err);
-        setError(err instanceof Error ? err.message : 'Failed to initialize globe');
+        setError(
+          err instanceof Error ? err.message : 'Failed to initialize globe'
+        );
       }
     };
 
@@ -266,8 +294,9 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
       if (renderer) {
         renderer.dispose();
       }
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
+      const container = containerRef.current;
+      if (container) {
+        container.innerHTML = '';
       }
       window.removeEventListener('resize', handleResize);
     };

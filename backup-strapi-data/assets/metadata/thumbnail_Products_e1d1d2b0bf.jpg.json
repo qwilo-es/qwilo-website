@@ -1,1 +1,15 @@
-{"name":"thumbnail_Products.jpg","hash":"thumbnail_Products_e1d1d2b0bf","ext":".jpg","mime":"image/jpeg","path":null,"width":245,"height":123,"size":1.61,"sizeInBytes":1613,"url":"/uploads/thumbnail_Products_e1d1d2b0bf.jpg","type":"thumbnail","id":39,"mainHash":"Products_e1d1d2b0bf"}
+{
+  "name": "thumbnail_Products.jpg",
+  "hash": "thumbnail_Products_e1d1d2b0bf",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 245,
+  "height": 123,
+  "size": 1.61,
+  "sizeInBytes": 1613,
+  "url": "/uploads/thumbnail_Products_e1d1d2b0bf.jpg",
+  "type": "thumbnail",
+  "id": 39,
+  "mainHash": "Products_e1d1d2b0bf"
+}

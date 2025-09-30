@@ -6,7 +6,10 @@ import ThreeGlobe from 'three-globe';
 declare module '@react-three/fiber' {
   interface ThreeElements {
     threeGlobe: ReactThreeFiber.Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
-    primitive: ReactThreeFiber.Object3DNode<THREE.Object3D, typeof THREE.Object3D> & {
+    primitive: ReactThreeFiber.Object3DNode<
+      THREE.Object3D,
+      typeof THREE.Object3D
+    > & {
       object: THREE.Object3D;
       attach?: string;
     };
@@ -18,7 +21,10 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       threeGlobe: ReactThreeFiber.Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
-      primitive: ReactThreeFiber.Object3DNode<THREE.Object3D, typeof THREE.Object3D> & {
+      primitive: ReactThreeFiber.Object3DNode<
+        THREE.Object3D,
+        typeof THREE.Object3D
+      > & {
         object: THREE.Object3D;
         attach?: string;
       };

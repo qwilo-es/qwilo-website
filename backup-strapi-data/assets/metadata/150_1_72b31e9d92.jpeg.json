@@ -1,1 +1,23 @@
-{"id":12,"documentId":"o44h5y8j19whpi81176fcjc7","name":"150 (1).jpeg","alternativeText":null,"caption":null,"width":150,"height":150,"formats":null,"hash":"150_1_72b31e9d92","ext":".jpeg","mime":"image/jpeg","size":4.47,"url":"/uploads/150_1_72b31e9d92.jpeg","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/2","createdAt":"2024-08-07T14:25:17.853Z","updatedAt":"2025-04-07T15:22:11.066Z","publishedAt":"2024-08-07T14:25:17.853Z","locale":null}
+{
+  "id": 12,
+  "documentId": "o44h5y8j19whpi81176fcjc7",
+  "name": "150 (1).jpeg",
+  "alternativeText": null,
+  "caption": null,
+  "width": 150,
+  "height": 150,
+  "formats": null,
+  "hash": "150_1_72b31e9d92",
+  "ext": ".jpeg",
+  "mime": "image/jpeg",
+  "size": 4.47,
+  "url": "/uploads/150_1_72b31e9d92.jpeg",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/2",
+  "createdAt": "2024-08-07T14:25:17.853Z",
+  "updatedAt": "2025-04-07T15:22:11.066Z",
+  "publishedAt": "2024-08-07T14:25:17.853Z",
+  "locale": null
+}

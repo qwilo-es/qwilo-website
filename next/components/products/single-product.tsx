@@ -48,7 +48,9 @@ export const SingleProduct = ({ product }: { product: Product }) => {
             {product.images &&
               product.images.map((image, index) => (
                 <button
-                  onClick={() => setActiveThumbnail(getStrapiMedia(image.url) || '')}
+                  onClick={() =>
+                    setActiveThumbnail(getStrapiMedia(image.url) || '')
+                  }
                   key={'product-image' + index}
                   className={cn(
                     'h-20 w-20 rounded-xl',

@@ -17,7 +17,7 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  
+
   try {
     const pageData = await fetchContentType(
       'blog-page',
@@ -41,9 +41,9 @@ export default async function Blog(props: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const params = await props.params;
-  
+
   let blogPage, articles;
-  
+
   try {
     blogPage = await fetchContentType(
       'blog-page',
@@ -56,7 +56,7 @@ export default async function Blog(props: {
     console.log('Failed to fetch blog page from Strapi:', error);
     blogPage = {
       title: 'Blog',
-      localizations: []
+      localizations: [],
     };
   }
 

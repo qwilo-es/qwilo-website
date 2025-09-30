@@ -30,7 +30,9 @@ export const FAQ = ({
               <h4 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">
                 {faq.question}
               </h4>
-              <p className="mt-4 text-neutral-400 whitespace-pre-line">{faq.answer}</p>
+              <p className="mt-4 text-neutral-400 whitespace-pre-line">
+                {faq.answer}
+              </p>
             </div>
           ))}
       </div>

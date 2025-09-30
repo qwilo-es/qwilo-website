@@ -1,1 +1,23 @@
-{"id":26,"documentId":"okelb88b6eppwzj3jplv2k5n","name":"tyler-durden.jpg","alternativeText":null,"caption":null,"width":128,"height":128,"formats":null,"hash":"tyler_durden_77d84b929a","ext":".jpg","mime":"image/jpeg","size":2.72,"url":"/uploads/tyler_durden_77d84b929a.jpg","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/2","createdAt":"2024-09-05T13:06:32.055Z","updatedAt":"2025-04-07T15:22:11.793Z","publishedAt":"2024-09-05T13:06:32.055Z","locale":null}
+{
+  "id": 26,
+  "documentId": "okelb88b6eppwzj3jplv2k5n",
+  "name": "tyler-durden.jpg",
+  "alternativeText": null,
+  "caption": null,
+  "width": 128,
+  "height": 128,
+  "formats": null,
+  "hash": "tyler_durden_77d84b929a",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "size": 2.72,
+  "url": "/uploads/tyler_durden_77d84b929a.jpg",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/2",
+  "createdAt": "2024-09-05T13:06:32.055Z",
+  "updatedAt": "2025-04-07T15:22:11.793Z",
+  "publishedAt": "2024-09-05T13:06:32.055Z",
+  "locale": null
+}

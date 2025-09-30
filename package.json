@@ -34,9 +34,6 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,yml,yaml}": [
       "yarn fix:format"
-    ],
-    "next/**/*.{js,jsx,ts,tsx}": [
-      "cd next && yarn lint --fix"
     ]
   },
   "packageManager": "yarn@4.5.0"

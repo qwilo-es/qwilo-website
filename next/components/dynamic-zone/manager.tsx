@@ -16,10 +16,9 @@ interface Props {
 }
 
 const componentMapping: { [key: string]: any } = {
-  'dynamic-zone.hero': dynamic(
-    () => import('./hero').then((mod) => mod.Hero),
-    { ssr: false }
-  ),
+  'dynamic-zone.hero': dynamic(() => import('./hero').then((mod) => mod.Hero), {
+    ssr: false,
+  }),
   'dynamic-zone.features': dynamic(
     () => import('./features').then((mod) => mod.Features),
     { ssr: false }
@@ -44,15 +43,13 @@ const componentMapping: { [key: string]: any } = {
     () => import('./launches').then((mod) => mod.Launches),
     { ssr: false }
   ),
-  'dynamic-zone.cta': dynamic(
-    () => import('./cta').then((mod) => mod.CTA),
-    { ssr: false }
-  ),
-  
-  'dynamic-zone.faq': dynamic(
-    () => import('./faq').then((mod) => mod.FAQ),
-    { ssr: false }
-  ),
+  'dynamic-zone.cta': dynamic(() => import('./cta').then((mod) => mod.CTA), {
+    ssr: false,
+  }),
+
+  'dynamic-zone.faq': dynamic(() => import('./faq').then((mod) => mod.FAQ), {
+    ssr: false,
+  }),
   'dynamic-zone.related-products': dynamic(
     () => import('./related-products').then((mod) => mod.RelatedProducts),
     { ssr: false }

@@ -30,8 +30,5 @@
     ".next/types/**/*.ts",
     "lib/next-metadata.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "components/ui/canvas-reveal-effect.tsx"
-  ]
+  "exclude": ["node_modules", "components/ui/canvas-reveal-effect.tsx"]
 }

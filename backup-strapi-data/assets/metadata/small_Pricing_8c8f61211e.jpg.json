@@ -1,1 +1,15 @@
-{"name":"small_Pricing.jpg","hash":"small_Pricing_8c8f61211e","ext":".jpg","mime":"image/jpeg","path":null,"width":500,"height":251,"size":12.2,"sizeInBytes":12204,"url":"/uploads/small_Pricing_8c8f61211e.jpg","type":"small","id":41,"mainHash":"Pricing_8c8f61211e"}
+{
+  "name": "small_Pricing.jpg",
+  "hash": "small_Pricing_8c8f61211e",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 500,
+  "height": 251,
+  "size": 12.2,
+  "sizeInBytes": 12204,
+  "url": "/uploads/small_Pricing_8c8f61211e.jpg",
+  "type": "small",
+  "id": 41,
+  "mainHash": "Pricing_8c8f61211e"
+}

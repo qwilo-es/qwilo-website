@@ -1,6 +1,6 @@
 'use client';
-// @ts-nocheck - Temporary disable TypeScript for Three.js compatibility
 
+// @ts-nocheck - Temporary disable TypeScript for Three.js compatibility
 import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import React, { useMemo, useRef } from 'react';

@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { hostname: process.env.IMAGE_HOSTNAME || 'localhost' },
-      { hostname: 'attractive-captain-e67c81eb66.media.strapiapp.com' }
+      { hostname: 'attractive-captain-e67c81eb66.media.strapiapp.com' },
     ],
   },
   pageExtensions: ['ts', 'tsx'],

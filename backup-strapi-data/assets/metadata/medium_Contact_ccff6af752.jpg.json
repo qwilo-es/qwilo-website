@@ -1,1 +1,15 @@
-{"name":"medium_Contact.jpg","hash":"medium_Contact_ccff6af752","ext":".jpg","mime":"image/jpeg","path":null,"width":750,"height":377,"size":7.51,"sizeInBytes":7513,"url":"/uploads/medium_Contact_ccff6af752.jpg","type":"medium","id":43,"mainHash":"Contact_ccff6af752"}
+{
+  "name": "medium_Contact.jpg",
+  "hash": "medium_Contact_ccff6af752",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 750,
+  "height": 377,
+  "size": 7.51,
+  "sizeInBytes": 7513,
+  "url": "/uploads/medium_Contact_ccff6af752.jpg",
+  "type": "medium",
+  "id": 43,
+  "mainHash": "Contact_ccff6af752"
+}

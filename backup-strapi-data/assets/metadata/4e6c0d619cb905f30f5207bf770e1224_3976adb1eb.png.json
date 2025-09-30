@@ -1,1 +1,48 @@
-{"id":32,"documentId":"h06qbz3se1qlh8j4k7l0p3u1","name":"4e6c0d619cb905f30f5207bf770e1224.png","alternativeText":null,"caption":null,"width":575,"height":143,"formats":{"thumbnail":{"name":"thumbnail_4e6c0d619cb905f30f5207bf770e1224.png","hash":"thumbnail_4e6c0d619cb905f30f5207bf770e1224_3976adb1eb","ext":".png","mime":"image/png","path":null,"width":245,"height":61,"size":12,"sizeInBytes":11996,"url":"/uploads/thumbnail_4e6c0d619cb905f30f5207bf770e1224_3976adb1eb.png"},"small":{"name":"small_4e6c0d619cb905f30f5207bf770e1224.png","hash":"small_4e6c0d619cb905f30f5207bf770e1224_3976adb1eb","ext":".png","mime":"image/png","path":null,"width":500,"height":124,"size":38.49,"sizeInBytes":38493,"url":"/uploads/small_4e6c0d619cb905f30f5207bf770e1224_3976adb1eb.png"}},"hash":"4e6c0d619cb905f30f5207bf770e1224_3976adb1eb","ext":".png","mime":"image/png","size":9.11,"url":"/uploads/4e6c0d619cb905f30f5207bf770e1224_3976adb1eb.png","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/1","createdAt":"2024-09-10T18:28:39.732Z","updatedAt":"2025-04-07T15:22:12.215Z","publishedAt":"2024-09-10T18:28:39.732Z","locale":null}
+{
+  "id": 32,
+  "documentId": "h06qbz3se1qlh8j4k7l0p3u1",
+  "name": "4e6c0d619cb905f30f5207bf770e1224.png",
+  "alternativeText": null,
+  "caption": null,
+  "width": 575,
+  "height": 143,
+  "formats": {
+    "thumbnail": {
+      "name": "thumbnail_4e6c0d619cb905f30f5207bf770e1224.png",
+      "hash": "thumbnail_4e6c0d619cb905f30f5207bf770e1224_3976adb1eb",
+      "ext": ".png",
+      "mime": "image/png",
+      "path": null,
+      "width": 245,
+      "height": 61,
+      "size": 12,
+      "sizeInBytes": 11996,
+      "url": "/uploads/thumbnail_4e6c0d619cb905f30f5207bf770e1224_3976adb1eb.png"
+    },
+    "small": {
+      "name": "small_4e6c0d619cb905f30f5207bf770e1224.png",
+      "hash": "small_4e6c0d619cb905f30f5207bf770e1224_3976adb1eb",
+      "ext": ".png",
+      "mime": "image/png",
+      "path": null,
+      "width": 500,
+      "height": 124,
+      "size": 38.49,
+      "sizeInBytes": 38493,
+      "url": "/uploads/small_4e6c0d619cb905f30f5207bf770e1224_3976adb1eb.png"
+    }
+  },
+  "hash": "4e6c0d619cb905f30f5207bf770e1224_3976adb1eb",
+  "ext": ".png",
+  "mime": "image/png",
+  "size": 9.11,
+  "url": "/uploads/4e6c0d619cb905f30f5207bf770e1224_3976adb1eb.png",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/1",
+  "createdAt": "2024-09-10T18:28:39.732Z",
+  "updatedAt": "2025-04-07T15:22:12.215Z",
+  "publishedAt": "2024-09-10T18:28:39.732Z",
+  "locale": null
+}

@@ -45,7 +45,10 @@ export const Features = ({
   return (
     <GradientContainer className="md:my-20">
       {/* Añadimos el ID para el scroll */}
-      <Container id="features" className="py-20 max-w-7xl mx-auto  relative z-40">
+      <Container
+        id="features"
+        className="py-20 max-w-7xl mx-auto  relative z-40"
+      >
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <IconRocket className="h-6 w-6 text-white" />
         </FeatureIconContainer>

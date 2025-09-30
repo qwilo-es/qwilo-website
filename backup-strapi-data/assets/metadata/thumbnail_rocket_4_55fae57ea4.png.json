@@ -1,1 +1,15 @@
-{"name":"thumbnail_rocket-4.png","hash":"thumbnail_rocket_4_55fae57ea4","ext":".png","mime":"image/png","path":null,"width":156,"height":156,"size":61.79,"sizeInBytes":61794,"url":"/uploads/thumbnail_rocket_4_55fae57ea4.png","type":"thumbnail","id":20,"mainHash":"rocket_4_55fae57ea4"}
+{
+  "name": "thumbnail_rocket-4.png",
+  "hash": "thumbnail_rocket_4_55fae57ea4",
+  "ext": ".png",
+  "mime": "image/png",
+  "path": null,
+  "width": 156,
+  "height": 156,
+  "size": 61.79,
+  "sizeInBytes": 61794,
+  "url": "/uploads/thumbnail_rocket_4_55fae57ea4.png",
+  "type": "thumbnail",
+  "id": 20,
+  "mainHash": "rocket_4_55fae57ea4"
+}

@@ -1,1 +1,15 @@
-{"name":"medium_Blog.jpg","hash":"medium_Blog_bd35597734","ext":".jpg","mime":"image/jpeg","path":null,"width":750,"height":377,"size":8.95,"sizeInBytes":8953,"url":"/uploads/medium_Blog_bd35597734.jpg","type":"medium","id":40,"mainHash":"Blog_bd35597734"}
+{
+  "name": "medium_Blog.jpg",
+  "hash": "medium_Blog_bd35597734",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 750,
+  "height": 377,
+  "size": 8.95,
+  "sizeInBytes": 8953,
+  "url": "/uploads/medium_Blog_bd35597734.jpg",
+  "type": "medium",
+  "id": 40,
+  "mainHash": "Blog_bd35597734"
+}

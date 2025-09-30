@@ -1,1 +1,23 @@
-{"id":22,"documentId":"w46bniot3uqeba0v6d3i59q9","name":"john-doe.jpg","alternativeText":null,"caption":null,"width":128,"height":128,"formats":null,"hash":"john_doe_1792821758","ext":".jpg","mime":"image/jpeg","size":2.97,"url":"/uploads/john_doe_1792821758.jpg","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/2","createdAt":"2024-09-05T13:06:31.967Z","updatedAt":"2025-04-07T15:22:11.678Z","publishedAt":"2024-09-05T13:06:31.967Z","locale":null}
+{
+  "id": 22,
+  "documentId": "w46bniot3uqeba0v6d3i59q9",
+  "name": "john-doe.jpg",
+  "alternativeText": null,
+  "caption": null,
+  "width": 128,
+  "height": 128,
+  "formats": null,
+  "hash": "john_doe_1792821758",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "size": 2.97,
+  "url": "/uploads/john_doe_1792821758.jpg",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/2",
+  "createdAt": "2024-09-05T13:06:31.967Z",
+  "updatedAt": "2025-04-07T15:22:11.678Z",
+  "publishedAt": "2024-09-05T13:06:31.967Z",
+  "locale": null
+}

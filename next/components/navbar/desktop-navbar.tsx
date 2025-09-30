@@ -13,8 +13,8 @@ import { LocaleSwitcher } from '../locale-switcher';
 import { NavbarItem } from './navbar-item';
 import { Button } from '@/components/elements/button';
 import { Logo } from '@/components/logo';
-import { cn } from '@/lib/utils';
 import { CALENDAR_LINK } from '@/lib/constants';
+import { cn } from '@/lib/utils';
 
 type Props = {
   leftNavbarItems: {
@@ -94,7 +94,8 @@ export const DesktopNavbar = ({
         {rightNavbarItems.map((item, index) => {
           const isDemoButton = item.text.toLowerCase().includes('demostración');
           const url = isDemoButton ? CALENDAR_LINK : item.URL;
-          const isExternalLink = url.startsWith('http') || url.startsWith('https');
+          const isExternalLink =
+            url.startsWith('http') || url.startsWith('https');
 
           return (
             <Button
@@ -104,8 +105,8 @@ export const DesktopNavbar = ({
               }
               as={isExternalLink ? 'a' : Link}
               href={isExternalLink ? url : `/${locale}${url}`}
-              target={isExternalLink ? "_blank" : undefined}
-              rel={isExternalLink ? "noopener noreferrer" : undefined}
+              target={isExternalLink ? '_blank' : undefined}
+              rel={isExternalLink ? 'noopener noreferrer' : undefined}
             >
               {item.text}
             </Button>

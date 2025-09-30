@@ -1,1 +1,15 @@
-{"name":"thumbnail_Pricing.jpg","hash":"thumbnail_Pricing_8c8f61211e","ext":".jpg","mime":"image/jpeg","path":null,"width":245,"height":123,"size":3.81,"sizeInBytes":3812,"url":"/uploads/thumbnail_Pricing_8c8f61211e.jpg","type":"thumbnail","id":41,"mainHash":"Pricing_8c8f61211e"}
+{
+  "name": "thumbnail_Pricing.jpg",
+  "hash": "thumbnail_Pricing_8c8f61211e",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "path": null,
+  "width": 245,
+  "height": 123,
+  "size": 3.81,
+  "sizeInBytes": 3812,
+  "url": "/uploads/thumbnail_Pricing_8c8f61211e.jpg",
+  "type": "thumbnail",
+  "id": 41,
+  "mainHash": "Pricing_8c8f61211e"
+}

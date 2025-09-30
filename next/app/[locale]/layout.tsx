@@ -21,9 +21,9 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  
+
   console.log('generateMetadata called for locale:', params.locale);
-  
+
   try {
     const pageData = await fetchContentType(
       'global',
@@ -51,7 +51,7 @@ export default async function LocaleLayout(props: {
   params: Promise<{ locale: string }>;
 }) {
   console.log('LocaleLayout: Starting rendering...');
-  
+
   let params;
   try {
     params = await props.params;
@@ -75,11 +75,7 @@ export default async function LocaleLayout(props: {
 
   let pageData;
   try {
-    pageData = await fetchContentType(
-      'global',
-      { locale },
-      true
-    );
+    pageData = await fetchContentType('global', { locale }, true);
     console.log('LocaleLayout: Global data fetched successfully:', !!pageData);
   } catch (error) {
     console.error('LocaleLayout: Error fetching global data:', error);
@@ -88,10 +84,13 @@ export default async function LocaleLayout(props: {
 
   // Fallback if global content doesn't exist
   const globalData = pageData || { navbar: null, footer: null };
-  console.log('LocaleLayout: Using global data:', { hasNavbar: !!globalData.navbar, hasFooter: !!globalData.footer });
-  
+  console.log('LocaleLayout: Using global data:', {
+    hasNavbar: !!globalData.navbar,
+    hasFooter: !!globalData.footer,
+  });
+
   console.log('LocaleLayout: About to render components...');
-  
+
   try {
     return (
       <ViewTransitions>

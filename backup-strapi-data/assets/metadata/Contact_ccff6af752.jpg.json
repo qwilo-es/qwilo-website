@@ -1,1 +1,72 @@
-{"id":43,"documentId":"yfigj4qq9wk0nu0eh8f0fi1x","name":"Contact.jpg","alternativeText":null,"caption":null,"width":1920,"height":966,"formats":{"thumbnail":{"name":"thumbnail_Contact.jpg","hash":"thumbnail_Contact_ccff6af752","ext":".jpg","mime":"image/jpeg","path":null,"width":245,"height":123,"size":1.31,"sizeInBytes":1306,"url":"/uploads/thumbnail_Contact_ccff6af752.jpg"},"medium":{"name":"medium_Contact.jpg","hash":"medium_Contact_ccff6af752","ext":".jpg","mime":"image/jpeg","path":null,"width":750,"height":377,"size":7.51,"sizeInBytes":7513,"url":"/uploads/medium_Contact_ccff6af752.jpg"},"small":{"name":"small_Contact.jpg","hash":"small_Contact_ccff6af752","ext":".jpg","mime":"image/jpeg","path":null,"width":500,"height":252,"size":3.61,"sizeInBytes":3609,"url":"/uploads/small_Contact_ccff6af752.jpg"},"large":{"name":"large_Contact.jpg","hash":"large_Contact_ccff6af752","ext":".jpg","mime":"image/jpeg","path":null,"width":1000,"height":503,"size":12.11,"sizeInBytes":12107,"url":"/uploads/large_Contact_ccff6af752.jpg"}},"hash":"Contact_ccff6af752","ext":".jpg","mime":"image/jpeg","size":32.67,"url":"/uploads/Contact_ccff6af752.jpg","previewUrl":null,"provider":"local","provider_metadata":null,"folderPath":"/3","createdAt":"2024-09-16T12:37:28.711Z","updatedAt":"2025-04-07T15:22:13.762Z","publishedAt":"2024-09-16T12:37:28.711Z","locale":null}
+{
+  "id": 43,
+  "documentId": "yfigj4qq9wk0nu0eh8f0fi1x",
+  "name": "Contact.jpg",
+  "alternativeText": null,
+  "caption": null,
+  "width": 1920,
+  "height": 966,
+  "formats": {
+    "thumbnail": {
+      "name": "thumbnail_Contact.jpg",
+      "hash": "thumbnail_Contact_ccff6af752",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 245,
+      "height": 123,
+      "size": 1.31,
+      "sizeInBytes": 1306,
+      "url": "/uploads/thumbnail_Contact_ccff6af752.jpg"
+    },
+    "medium": {
+      "name": "medium_Contact.jpg",
+      "hash": "medium_Contact_ccff6af752",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 750,
+      "height": 377,
+      "size": 7.51,
+      "sizeInBytes": 7513,
+      "url": "/uploads/medium_Contact_ccff6af752.jpg"
+    },
+    "small": {
+      "name": "small_Contact.jpg",
+      "hash": "small_Contact_ccff6af752",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 500,
+      "height": 252,
+      "size": 3.61,
+      "sizeInBytes": 3609,
+      "url": "/uploads/small_Contact_ccff6af752.jpg"
+    },
+    "large": {
+      "name": "large_Contact.jpg",
+      "hash": "large_Contact_ccff6af752",
+      "ext": ".jpg",
+      "mime": "image/jpeg",
+      "path": null,
+      "width": 1000,
+      "height": 503,
+      "size": 12.11,
+      "sizeInBytes": 12107,
+      "url": "/uploads/large_Contact_ccff6af752.jpg"
+    }
+  },
+  "hash": "Contact_ccff6af752",
+  "ext": ".jpg",
+  "mime": "image/jpeg",
+  "size": 32.67,
+  "url": "/uploads/Contact_ccff6af752.jpg",
+  "previewUrl": null,
+  "provider": "local",
+  "provider_metadata": null,
+  "folderPath": "/3",
+  "createdAt": "2024-09-16T12:37:28.711Z",
+  "updatedAt": "2025-04-07T15:22:13.762Z",
+  "publishedAt": "2024-09-16T12:37:28.711Z",
+  "locale": null
+}

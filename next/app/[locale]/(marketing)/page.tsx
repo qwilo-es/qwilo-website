@@ -56,7 +56,7 @@ export default async function HomePage(props: {
     pageData = {
       title: 'Qwilo',
       content: [],
-      localizations: []
+      localizations: [],
     };
   }
 
@@ -65,7 +65,7 @@ export default async function HomePage(props: {
     pageData = {
       title: 'Qwilo',
       content: [],
-      localizations: []
+      localizations: [],
     };
   }
 
