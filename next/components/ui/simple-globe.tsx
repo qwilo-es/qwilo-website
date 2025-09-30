@@ -50,24 +50,36 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    let scene: THREE.Scene;
-    let camera: THREE.PerspectiveCamera;
-    let renderer: THREE.WebGLRenderer;
-    let globe: THREE.Mesh;
-    let animationId: number;
+    let scene: THREE.Scene | null = null;
+    let camera: THREE.PerspectiveCamera | null = null;
+    let renderer: THREE.WebGLRenderer | null = null;
+    let globe: THREE.Mesh | null = null;
+    let animationId: number | null = null;
+    let isCleanedUp = false;
+
+    // Event handler references for cleanup
+    let onMouseDown: ((event: MouseEvent) => void) | null = null;
+    let onMouseUp: (() => void) | null = null;
+    let onMouseMove: ((event: MouseEvent) => void) | null = null;
+    let handleResize: (() => void) | null = null;
 
     const initGlobe = async () => {
       try {
+        if (isCleanedUp) return;
+
         // Scene setup
         scene = new THREE.Scene();
         scene.fog = new THREE.Fog(0x000000, 400, 2000);
 
         // Camera setup
-        const container = containerRef.current!;
+        const container = containerRef.current;
+        if (!container) return;
+
         const width = container.clientWidth || 600;
         const height = container.clientHeight || 600;
 
@@ -84,10 +96,15 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setClearColor(0x000000, 0);
 
-        // Clear container and add renderer
-        while (container.firstChild) {
-          container.removeChild(container.firstChild);
+        // Clear container safely
+        try {
+          while (container.firstChild) {
+            container.removeChild(container.firstChild);
+          }
+        } catch (e) {
+          console.warn('Error clearing container:', e);
         }
+
         container.appendChild(renderer.domElement);
 
         // Lighting
@@ -211,18 +228,18 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
           mouseY = 0;
         let isMouseDown = false;
 
-        const onMouseDown = (event: MouseEvent) => {
+        onMouseDown = (event: MouseEvent) => {
           isMouseDown = true;
           mouseX = event.clientX;
           mouseY = event.clientY;
         };
 
-        const onMouseUp = () => {
+        onMouseUp = () => {
           isMouseDown = false;
         };
 
-        const onMouseMove = (event: MouseEvent) => {
-          if (!isMouseDown) return;
+        onMouseMove = (event: MouseEvent) => {
+          if (!isMouseDown || !scene) return;
 
           const deltaX = event.clientX - mouseX;
           const deltaY = event.clientY - mouseY;
@@ -238,20 +255,41 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         window.addEventListener('mouseup', onMouseUp);
         window.addEventListener('mousemove', onMouseMove);
 
+        // Handle resize
+        handleResize = () => {
+          if (!containerRef.current || !camera || !renderer) return;
+
+          const container = containerRef.current;
+          const width = container.clientWidth || 600;
+          const height = container.clientHeight || 600;
+
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+          renderer.setSize(width, height);
+        };
+
+        window.addEventListener('resize', handleResize);
+
         // Animation loop
         const animate = () => {
+          if (isCleanedUp) return;
+
           animationId = requestAnimationFrame(animate);
 
           // Auto rotate
-          if (globeConfig.autoRotate !== false) {
+          if (globeConfig.autoRotate !== false && scene) {
             scene.rotation.y += (globeConfig.autoRotateSpeed || 0.5) * 0.01;
           }
 
-          renderer.render(scene, camera);
+          if (renderer && scene && camera) {
+            renderer.render(scene, camera);
+          }
         };
 
         animate();
-        setIsLoaded(true);
+        if (!isCleanedUp) {
+          setIsLoaded(true);
+        }
       } catch (err) {
         console.error('Error initializing basic globe:', err);
         setError(
@@ -272,51 +310,75 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
       );
     };
 
-    // Handle resize
-    const handleResize = () => {
-      if (!containerRef.current || !camera || !renderer) return;
-
-      const container = containerRef.current;
-      const width = container.clientWidth || 600;
-      const height = container.clientHeight || 600;
-
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
-    };
-
     initGlobe();
-    window.addEventListener('resize', handleResize);
 
+    // Cleanup function
     return () => {
-      // Cleanup
-      if (animationId) {
+      isCleanedUp = true;
+
+      // Cancel animation
+      if (animationId !== null) {
         cancelAnimationFrame(animationId);
+        animationId = null;
       }
+
+      // Remove event listeners
+      const container = containerRef.current;
+      if (container && onMouseDown) {
+        container.removeEventListener('mousedown', onMouseDown);
+      }
+      if (onMouseUp) {
+        window.removeEventListener('mouseup', onMouseUp);
+      }
+      if (onMouseMove) {
+        window.removeEventListener('mousemove', onMouseMove);
+      }
+      if (handleResize) {
+        window.removeEventListener('resize', handleResize);
+      }
+
+      // Cleanup renderer and canvas
       if (renderer) {
-        const domElement = renderer.domElement;
-        renderer.dispose();
-        // Safely remove the canvas element
-        if (domElement && domElement.parentNode) {
-          domElement.parentNode.removeChild(domElement);
+        try {
+          const domElement = renderer.domElement;
+          renderer.dispose();
+          renderer.forceContextLoss();
+          // Safely remove the canvas element
+          if (domElement && domElement.parentNode === container) {
+            container.removeChild(domElement);
+          }
+        } catch (e) {
+          console.warn('Error disposing renderer:', e);
         }
+        renderer = null;
       }
+
+      // Cleanup scene
       if (scene) {
-        // Clean up scene
-        scene.traverse((object) => {
-          if (object instanceof THREE.Mesh) {
-            object.geometry?.dispose();
-            if (object.material) {
-              if (Array.isArray(object.material)) {
-                object.material.forEach((material) => material.dispose());
-              } else {
-                object.material.dispose();
+        try {
+          scene.traverse((object) => {
+            if (object instanceof THREE.Mesh) {
+              if (object.geometry) {
+                object.geometry.dispose();
+              }
+              if (object.material) {
+                if (Array.isArray(object.material)) {
+                  object.material.forEach((material) => material.dispose());
+                } else {
+                  object.material.dispose();
+                }
               }
             }
-          }
-        });
+          });
+          scene.clear();
+        } catch (e) {
+          console.warn('Error cleaning up scene:', e);
+        }
+        scene = null;
       }
-      window.removeEventListener('resize', handleResize);
+
+      camera = null;
+      globe = null;
     };
   }, [globeConfig, data]);
 
