@@ -294,27 +294,30 @@ export function SimpleGlobe({ globeConfig, data }: SimpleGlobeProps) {
         cancelAnimationFrame(animationId);
       }
       if (renderer) {
-        const domElement = renderer.domElement;
-        renderer.dispose();
-        // Safely remove the canvas element
-        if (domElement && domElement.parentNode) {
-          domElement.parentNode.removeChild(domElement);
+        try {
+          renderer.dispose();
+        } catch (e) {
+          console.warn('Error disposing renderer:', e);
         }
       }
       if (scene) {
-        // Clean up scene
-        scene.traverse((object) => {
-          if (object instanceof THREE.Mesh) {
-            object.geometry?.dispose();
-            if (object.material) {
-              if (Array.isArray(object.material)) {
-                object.material.forEach((material) => material.dispose());
-              } else {
-                object.material.dispose();
+        try {
+          // Clean up scene
+          scene.traverse((object) => {
+            if (object instanceof THREE.Mesh) {
+              object.geometry?.dispose();
+              if (object.material) {
+                if (Array.isArray(object.material)) {
+                  object.material.forEach((material) => material.dispose());
+                } else {
+                  object.material.dispose();
+                }
               }
             }
-          }
-        });
+          });
+        } catch (e) {
+          console.warn('Error cleaning scene:', e);
+        }
       }
       window.removeEventListener('resize', handleResize);
     };
