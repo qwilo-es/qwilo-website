@@ -1,4 +1,5 @@
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 
 import { Locale, i18n } from '@/i18n.config';
 
@@ -14,6 +15,10 @@ export const viewport: Viewport = {
   ],
 };
 
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://qwilo.es'),
+};
+
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
@@ -25,11 +30,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      <body suppressHydrationWarning>
         <link rel="preconnect" href={process.env.NEXT_PUBLIC_API_URL || ''} />
         <link rel="dns-prefetch" href="https://attractive-captain-e67c81eb66.media.strapiapp.com" />
-      </head>
-      <body suppressHydrationWarning>
         <Preview />
         <SlugProvider>{children}</SlugProvider>
       </body>
