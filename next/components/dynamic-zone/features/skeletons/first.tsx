@@ -20,8 +20,8 @@ const World = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-[300px] w-[300px] md:w-[600px] md:h-[600px] mx-auto flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-300"></div>
+      <div className="h-[300px] w-[300px] md:w-[600px] md:h-[600px] mx-auto flex items-center justify-center bg-gradient-to-b from-transparent to-charcoal/10 rounded-full">
+        <div className="animate-pulse text-muted text-sm">Loading Globe...</div>
       </div>
     ),
   }

@@ -226,10 +226,10 @@ function GlobeInner({ globeConfig, data }: WorldProps) {
         .pointsData([])
         .ringsData([]);
 
-      // Then set the actual data
+      // Then set the actual data with reduced complexity
       globeRef.current
         .hexPolygonsData(validCountries)
-        .hexPolygonResolution(3)
+        .hexPolygonResolution(2) // Reduced from 3 for better performance
         .hexPolygonMargin(0.7)
         .showAtmosphere(defaultProps.showAtmosphere)
         .atmosphereColor(defaultProps.atmosphereColor)
@@ -426,14 +426,16 @@ export function World(props: WorldProps) {
     <Canvas
       camera={{ position: [0, 0, cameraZ], fov: 50, near: 180, far: 1800 }}
       gl={{
-        antialias: true,
+        antialias: false, // Disable antialiasing for better performance
         alpha: true,
         powerPreference: 'high-performance',
+        stencil: false,
+        depth: true,
       }}
+      dpr={[1, 1.5]} // Limit device pixel ratio for better performance
       onError={(error) => console.error('Canvas error:', error)}
     >
       <WebGLRendererConfig />
-      <fog attach="fog" args={[0x000000, 400, 2000]} />
 
       <ambientLight
         color={globeConfig.ambientLight || '#38bdf8'}
@@ -442,16 +444,6 @@ export function World(props: WorldProps) {
       <directionalLight
         color={globeConfig.directionalLeftLight || '#ffffff'}
         position={[-400, 100, 400]}
-        intensity={0.8}
-      />
-      <directionalLight
-        color={globeConfig.directionalTopLight || '#ffffff'}
-        position={[-200, 500, 200]}
-        intensity={0.5}
-      />
-      <pointLight
-        color={globeConfig.pointLight || '#ffffff'}
-        position={[-200, 500, 200]}
         intensity={0.8}
       />
 
@@ -466,6 +458,7 @@ export function World(props: WorldProps) {
         autoRotate={globeConfig.autoRotate ?? true}
         minPolarAngle={Math.PI / 3.5}
         maxPolarAngle={Math.PI - Math.PI / 3}
+        enableDamping={false} // Disable damping for better performance
       />
     </Canvas>
   );
