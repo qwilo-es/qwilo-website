@@ -25,6 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href={process.env.NEXT_PUBLIC_API_URL || ''} />
+        <link rel="dns-prefetch" href="https://attractive-captain-e67c81eb66.media.strapiapp.com" />
+      </head>
       <body suppressHydrationWarning>
         <Preview />
         <SlugProvider>{children}</SlugProvider>
