@@ -1,7 +1,7 @@
 'use client';
 
 import { IconRocket } from '@tabler/icons-react';
-import { motion, useMotionValueEvent } from 'framer-motion';
+import { m as motion, useMotionValueEvent } from 'framer-motion';
 import { useScroll } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 

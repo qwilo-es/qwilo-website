@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  motion,
+  m,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -49,7 +49,7 @@ export const GradientContainer = ({
       }
       className={cn('relative z-20', className)}
     >
-      <motion.div
+      <m.div
         className={`w-full h-[var(--conic-size)] mb-[calc(-1*var(--conic-size))] 
         pointer-events-none select-none relative z-0
         after:content-['']

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 import { DesktopNavbar } from './desktop-navbar';
 import { MobileNavbar } from './mobile-navbar';

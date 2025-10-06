@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "prepare": "husky",
-    "build": "cd next && npm install && npm run build",
     "next": "yarn dev --prefix ../next/",
     "strapi": "yarn dev --prefix ../strapi/",
     "setup:next": "cd next && yarn && node --loader ts-node/esm ../scripts/copy-env.mts ./",

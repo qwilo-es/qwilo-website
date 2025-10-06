@@ -1,6 +1,6 @@
 'use client';
 
-import { HTMLMotionProps, motion } from 'framer-motion';
+import { HTMLMotionProps, m } from 'framer-motion';
 import React from 'react';
 
 export const Cover = ({ children }: { children?: React.ReactNode }) => {
@@ -23,7 +23,7 @@ export const CircleIcon = ({
   delay?: number;
 }) => {
   return (
-    <motion.div
+    <m.div
       initial={{
         opacity: 0.2,
       }}

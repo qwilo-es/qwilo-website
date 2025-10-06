@@ -1,4 +1,0 @@
-{
-  "installCommand": "echo 'Skipping root install'",
-  "outputDirectory": "next/.next"
-}
