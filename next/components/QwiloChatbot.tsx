@@ -239,7 +239,7 @@ export default function QwiloChatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-0 sm:bottom-24 right-0 sm:right-5 z-[9999] w-full sm:w-[380px] h-[100dvh] sm:h-[550px] bg-neutral-900 sm:rounded-xl shadow-2xl border-t sm:border border-neutral-800 flex flex-col overflow-hidden"
+            className="fixed bottom-5 right-5 z-[9999] w-[calc(100vw-2.5rem)] sm:w-[380px] h-[85vh] sm:h-[550px] max-h-[600px] bg-neutral-900 rounded-xl shadow-2xl border border-neutral-800 flex flex-col overflow-hidden"
             role="dialog"
             aria-label="Chat with Qwilo"
             aria-modal="true"
