@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd next && npm ci && npm run build",
+  "installCommand": "npm install --prefix next",
+  "outputDirectory": "next/.next",
+  "framework": null
+}
