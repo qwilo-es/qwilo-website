@@ -8,6 +8,7 @@ import './globals.css';
 import { SlugProvider } from './context/SlugContext';
 import { Preview } from '@/components/preview';
 import QwiloChatbot from '@/components/QwiloChatbot';
+import { StructuredData } from '@/components/StructuredData';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -30,7 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <StructuredData type="organization" />
+        <StructuredData type="website" />
+      </head>
       <body suppressHydrationWarning>
         <link rel="preconnect" href={process.env.NEXT_PUBLIC_API_URL || ''} />
         <link rel="dns-prefetch" href="https://attractive-captain-e67c81eb66.media.strapiapp.com" />
