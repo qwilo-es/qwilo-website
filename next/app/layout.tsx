@@ -7,6 +7,7 @@ import './globals.css';
 
 import { SlugProvider } from './context/SlugContext';
 import { Preview } from '@/components/preview';
+import QwiloChatbot from '@/components/QwiloChatbot';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -35,6 +36,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://attractive-captain-e67c81eb66.media.strapiapp.com" />
         <Preview />
         <SlugProvider>{children}</SlugProvider>
+        <QwiloChatbot />
       </body>
     </html>
   );
