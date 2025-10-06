@@ -8,4 +8,5 @@ Disallow: /admin/
 Host: https://qwilo.es
 
 # Sitemaps
+Sitemap: https://qwilo.es/sitemap.xml
 Sitemap: https://qwilo.es/server-sitemap.xml
