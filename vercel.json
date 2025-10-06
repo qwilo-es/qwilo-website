@@ -1,6 +1,4 @@
 {
-  "buildCommand": "cd next && npm run build",
-  "devCommand": "cd next && npm run dev",
-  "installCommand": "cd next && npm ci",
+  "installCommand": "echo 'Skipping root install'",
   "outputDirectory": "next/.next"
 }
