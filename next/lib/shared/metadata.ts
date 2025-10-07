@@ -25,20 +25,34 @@ export function generateMetadataObject(seo: any, canonicalUrl?: string) {
       'asistente virtual',
       'chatbot WhatsApp',
       'IA empresas',
+      'chatbot automatizado',
+      'IA conversacional',
+      'automatización empresarial',
+      'soluciones IA',
+      'agente inteligente',
     ];
+
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://qwilo.es';
+    const fullCanonicalUrl = canonicalUrl
+      ? (canonicalUrl.startsWith('http') ? canonicalUrl : `${baseUrl}${canonicalUrl}`)
+      : baseUrl;
 
     return {
       title: seo?.metaTitle || 'Qwilo - Automatización de Ventas con IA',
       description:
         seo?.metaDescription ||
-        'Transforma tu negocio con automatización inteligente de ventas y marketing.',
+        'Transforma tu negocio con automatización inteligente de ventas y marketing. Chatbots de WhatsApp con IA, agentes conversacionales y soluciones empresariales.',
       keywords: seo?.keywords || defaultKeywords.join(', '),
       authors: [{ name: 'Qwilo' }],
       creator: 'Qwilo',
       publisher: 'Qwilo',
-      alternates: canonicalUrl ? {
-        canonical: canonicalUrl,
-      } : undefined,
+      alternates: {
+        canonical: fullCanonicalUrl,
+        languages: {
+          'es-ES': `${baseUrl}/es`,
+          'en-US': `${baseUrl}/en`,
+        },
+      },
       robots: {
         index: true,
         follow: true,
@@ -49,6 +63,9 @@ export function generateMetadataObject(seo: any, canonicalUrl?: string) {
           'max-image-preview': 'large' as const,
           'max-snippet': -1,
         },
+      },
+      verification: {
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
       },
       openGraph: {
         type: 'website',

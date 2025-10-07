@@ -3,7 +3,7 @@
 import Script from 'next/script';
 
 interface StructuredDataProps {
-  type?: 'organization' | 'website' | 'article' | 'product';
+  type?: 'organization' | 'website' | 'article' | 'product' | 'service' | 'breadcrumb' | 'faq';
   data?: any;
 }
 
@@ -114,6 +114,15 @@ export function StructuredData({ type = 'organization', data }: StructuredDataPr
           name: data.name,
           description: data.description,
           image: data.image,
+          brand: {
+            '@type': 'Brand',
+            name: 'Qwilo',
+          },
+          aggregateRating: data.rating ? {
+            '@type': 'AggregateRating',
+            ratingValue: data.rating,
+            reviewCount: data.reviewCount || 1,
+          } : undefined,
           offers: {
             '@type': 'Offer',
             price: data.price,
@@ -121,6 +130,60 @@ export function StructuredData({ type = 'organization', data }: StructuredDataPr
             availability: 'https://schema.org/InStock',
             url: `${baseUrl}/products/${data.slug}`,
           },
+        } : null;
+
+      case 'service':
+        return data ? {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: data.name,
+          description: data.description,
+          provider: {
+            '@type': 'Organization',
+            name: 'Qwilo',
+            url: baseUrl,
+          },
+          areaServed: {
+            '@type': 'Country',
+            name: 'España',
+          },
+          hasOfferCatalog: data.features ? {
+            '@type': 'OfferCatalog',
+            name: data.name,
+            itemListElement: data.features.map((feature: string, index: number) => ({
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: feature,
+              },
+            })),
+          } : undefined,
+        } : null;
+
+      case 'breadcrumb':
+        return data?.items ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: data.items.map((item: any, index: number) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: item.name,
+            item: `${baseUrl}${item.url}`,
+          })),
+        } : null;
+
+      case 'faq':
+        return data?.questions ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: data.questions.map((q: any) => ({
+            '@type': 'Question',
+            name: q.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: q.answer,
+            },
+          })),
         } : null;
 
       default:

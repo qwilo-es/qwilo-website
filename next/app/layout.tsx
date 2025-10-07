@@ -9,6 +9,8 @@ import { SlugProvider } from './context/SlugContext';
 import { Preview } from '@/components/preview';
 import QwiloChatbot from '@/components/QwiloChatbot';
 import { StructuredData } from '@/components/StructuredData';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import GoogleTagManager, { GoogleTagManagerNoScript } from '@/components/GoogleTagManager';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -35,10 +37,15 @@ export default function RootLayout({
       <head>
         <StructuredData type="organization" />
         <StructuredData type="website" />
+        <GoogleAnalytics />
+        <GoogleTagManager />
       </head>
       <body suppressHydrationWarning>
+        <GoogleTagManagerNoScript />
         <link rel="preconnect" href={process.env.NEXT_PUBLIC_API_URL || ''} />
         <link rel="dns-prefetch" href="https://attractive-captain-e67c81eb66.media.strapiapp.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <Preview />
         <SlugProvider>{children}</SlugProvider>
         <QwiloChatbot />
